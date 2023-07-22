@@ -201,7 +201,7 @@ public class AmsGUI extends Application {
         Button delete = new Button("Remove Airport");
         Button show = new Button("Show Airports");
 
-        //add.setOnAction(event -> airportInfo());
+        add.setOnAction(event -> addAirportInfo());
         delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showHomeScreen());
 
@@ -251,47 +251,39 @@ public class AmsGUI extends Application {
 
         TextField name = new TextField();
         name.setPromptText("Enter Airline Name: ");
-
         TextField revenue = new TextField();
         revenue.setPromptText("Enter Airline Revenue: ");
-
         Button addAirline = new Button("Add Airline");
-
         Button backButton = new Button("Back to Airline scene");
-
-
 
         addAirline.setOnAction(event -> ams.createAirline(new Airline(name.getText(),Double.parseDouble(revenue.getText()))));
         backButton.setOnAction(event -> showAirlineScene());
 
         vbox.getChildren().addAll(name,revenue,addAirline,backButton);
-
-
         creatShowScreen(vbox);
-
-
     }
 
     private void addAirportInfo() {
 
         VBox vbox = new VBox();
 
+        TextField code = new TextField();
+        code.setPromptText("Enter Airport/IATA Code/: ");
         TextField name = new TextField();
         name.setPromptText("Enter Airport Name: ");
-
         TextField city = new TextField();
         city.setPromptText("Enter Airport City: ");
-
+        TextField state = new TextField();
+        state.setPromptText("Enter Airport State: ");
+        TextField country = new TextField();
+        country.setPromptText("Enter Airport Country: ");
         Button addAirport = new Button("Add Airport");
-
         Button backButton = new Button("Back to Airport scene");
 
-        //addAirport.setOnAction(event -> addAirportInfo());
+        addAirport.setOnAction(event -> ams.createAirport(new Airport(code.getText(),name.getText(),city.getText(),state.getText(),country.getText())));
         backButton.setOnAction(event -> showAirportScene());
 
-        vbox.getChildren().addAll(name,city,addAirport,backButton);
-
-
+        vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
         creatShowScreen(vbox);
 
 

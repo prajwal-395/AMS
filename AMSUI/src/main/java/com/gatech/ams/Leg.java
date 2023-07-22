@@ -30,6 +30,13 @@ public class Leg {
 		return this.arrAirport;
 	}
     
-    // TODO: helper method to udpate the progess 
+    // TODO: helper method to udpate the progess
 
+
+	@Override
+	public String toString() {
+
+		String str = " | " + this.getDistance() + " --> " + this.getArrivalAirport().getIATA();
+		return str;
+	}
 }

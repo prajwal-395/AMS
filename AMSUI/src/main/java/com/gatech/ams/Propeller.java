@@ -11,4 +11,8 @@ public class Propeller extends Airplane {
         return "prop";
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

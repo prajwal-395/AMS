@@ -63,4 +63,14 @@ public class Route {
     //     }
 
     // }
+
+
+    @Override
+    public String toString() {
+        return "Route{" +
+                "routeName='" + routeName + '\'' +
+                ", departsFrom=" + departsFrom +
+                ", legList=" + legList +
+                '}';
+    }
 }

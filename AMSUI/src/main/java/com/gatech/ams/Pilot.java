@@ -56,4 +56,14 @@ public class Pilot extends Person {
             listOfLicenses.add(newLicense);
         }
     }
+
+    @Override
+    public String toString() {
+        return "person " + this.getIdentifier() + " is a pilot named: " + this.getfName() +
+                " " + this.getlName() + " with a tax identifier: " +
+                this.getTaxID() + " and experience of " +
+                this.getExperience() + " trips";
+
+
+    }
 }

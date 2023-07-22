@@ -11,4 +11,6 @@ public class Jet extends Airplane {
     public String getPropulsionType() {
         return "jet";
     }
+
+
 }

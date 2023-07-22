@@ -57,5 +57,16 @@ public class Passenger extends Person {
     }
 
     //TODO extendVacation()
-    
+
+
+    @Override
+    public String toString() {
+        return  ("person " + this.getIdentifier() +
+                " is a passanger named: " + this.getfName() + " "
+                + this.getlName() + " with " +
+                this.getfrequentFlyerMiles() +
+                " frequent flier miles and $" +
+                this.getPassengerFunds() + " USD in funds");
+
+    }
 }

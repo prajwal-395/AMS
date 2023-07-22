@@ -259,7 +259,9 @@ public class AmsGUI extends Application {
 
         Button backButton = new Button("Back to Airline scene");
 
-        // addAirline.setOnAction(event -> addAirline());
+
+
+        addAirline.setOnAction(event -> ams.createAirline(new Airline(name.getText(),Double.parseDouble(revenue.getText()))));
         backButton.setOnAction(event -> showAirlineScene());
 
         vbox.getChildren().addAll(name,revenue,addAirline,backButton);
@@ -284,7 +286,7 @@ public class AmsGUI extends Application {
 
         Button backButton = new Button("Back to Airport scene");
 
-        addAirport.setOnAction(event -> addAirportInfo());
+        //addAirport.setOnAction(event -> addAirportInfo());
         backButton.setOnAction(event -> showAirportScene());
 
         vbox.getChildren().addAll(name,city,addAirport,backButton);
@@ -303,10 +305,16 @@ public class AmsGUI extends Application {
 
         Button addAirline = new Button("Add Airline");
 
+        String s = ams.showAirlinesDetail();
+
+
+        l.setText(s);
+
+
         Button backButton = new Button("Back to Airline scene");
         backButton.setOnAction(event -> showAirlineScene());
 
-        vbox.getChildren().addAll(addAirline,backButton);
+        vbox.getChildren().addAll(l,addAirline,backButton);
 
         creatShowScreen(vbox);
 

@@ -39,4 +39,13 @@ public abstract class Person {
         this.location = location;
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "fName='" + fName + '\'' +
+                ", lName='" + lName + '\'' +
+                ", identifier='" + identifier + '\'' +
+                ", location='" + location + '\'' +
+                '}';
+    }
 }

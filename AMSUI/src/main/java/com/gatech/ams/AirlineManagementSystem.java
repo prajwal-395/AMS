@@ -205,12 +205,30 @@ public class AirlineManagementSystem {
     }
 
     public void showAirlines() {
+
+        StringBuffer sb = new StringBuffer();
+
         for (Airline airline : airlineList) {
             System.out.println(airline);
+            sb.append(airline + "/n");
             //System.out.println("airline " + airline.getAirlineName() + " has a current revenue of: " + airline.getAirlineRevenue() + " USD");
         }
 
         System.out.println("all airlines have been displayed successfully!");
+    }
+
+    public String showAirlinesDetail() {
+
+        StringBuffer sb = new StringBuffer();
+
+        for (Airline airline : airlineList) {
+            System.out.println(airline);
+            sb.append(airline);
+            //System.out.println("airline " + airline.getAirlineName() + " has a current revenue of: " + airline.getAirlineRevenue() + " USD");
+        }
+
+        //System.out.println("all airlines have been displayed successfully!");
+        return sb.toString();
     }
 
     public void showAirplanes() {

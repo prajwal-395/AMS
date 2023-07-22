@@ -130,6 +130,6 @@ public class Airline {
 
     @Override
     public String toString() {
-        return "airline " + this.getAirlineName() + " has a current revenue of: " + this.getAirlineRevenue() + " USD";
+        return "Airline " + this.getAirlineName() + " has a current revenue of: " + this.getAirlineRevenue() + " USD." + System.lineSeparator();
     }
 }

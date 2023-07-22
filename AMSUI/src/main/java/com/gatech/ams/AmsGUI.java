@@ -338,35 +338,30 @@ public class AmsGUI extends Application {
     }
 
     private void showPassengerScene() {
+
+        VBox vbox = new VBox();
         Button add = new Button("Add Passenger");
         Button delete = new Button("Remove Passenger");
         Button show = new Button("Show Passengers");
-
         //add.setOnAction(event -> passengerInfo());
-        delete.setOnAction(event -> homeScreen());
-        show.setOnAction(event -> homeScreen());
-
-        VBox vbox = new VBox(10, add, delete, show);
-        vbox.setPrefSize(300, 250);
-
-        Scene scene = new Scene(vbox);
-        primaryStage.setScene(scene);
+        delete.setOnAction(event -> showHomeScreen());
+        show.setOnAction(event -> showHomeScreen());
+        vbox.getChildren().addAll(add,delete,show);
+        creatShowScreen(vbox);
     }
 
     private void showPilotScene() {
+
+        VBox vbox = new VBox();
         Button add = new Button("Add Pilot");
         Button delete = new Button("Remove Pilot");
         Button show = new Button("Show Pilots");
-
         //add.setOnAction(event -> pilotInfo());
         delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showHomeScreen());
+        vbox.getChildren().addAll(add,delete,show);
+        creatShowScreen(vbox);
 
-        VBox vbox = new VBox(10, add, delete, show);
-        vbox.setPrefSize(300, 250);
-
-        Scene scene = new Scene(vbox);
-        primaryStage.setScene(scene);
     }
 
 

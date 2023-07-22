@@ -195,27 +195,13 @@ public class AmsGUI extends Application {
         creatShowScreen(vbox);
 
     }
-    private void addAirlineInfo() {
+
+    //add airline screen
+    private void addAirlineInfo(){
 
         VBox vbox = new VBox();
-
-<<<<<<< HEAD
-        Button add = new Button("Add Airport");
-        Button delete = new Button("Remove Airport");
-        Button show = new Button("Show Airports");
-
-        add.setOnAction(event -> addAirportInfo());
-        delete.setOnAction(event -> showHomeScreen());
-        show.setOnAction(event -> showHomeScreen());
-
-        vbox.getChildren().addAll(add,delete,show);
-
-        creatShowScreen(vbox);
-    }
-=======
         TextField name = new TextField();
         name.setPromptText("Enter Airline Name: ");
->>>>>>> b97475d00bb5b0aad64cd9ad3f46ca3cb02621e1
 
         TextField revenue = new TextField();
         revenue.setPromptText("Enter Airline Revenue: ");
@@ -234,20 +220,16 @@ public class AmsGUI extends Application {
 
     }
 
+    //show airlines 
     private void showAirlineInfo() {
 
         VBox vbox = new VBox();
 
         Label l = new Label("AirlineView");
-
-        Button addAirline = new Button("Add Airline");
-
         String s = ams.showAirlinesDetail();
-
-
         l.setText(s);
 
-<<<<<<< HEAD
+
         TextField name = new TextField();
         name.setPromptText("Enter Airline Name: ");
         TextField revenue = new TextField();
@@ -259,17 +241,14 @@ public class AmsGUI extends Application {
         backButton.setOnAction(event -> showAirlineScene());
 
         vbox.getChildren().addAll(name,revenue,addAirline,backButton);
-=======
 
-        Button backButton = new Button("Back to Airline scene");
-        backButton.setOnAction(event -> showAirlineScene());
+
 
         vbox.getChildren().addAll(l,addAirline,backButton);
 
         creatShowScreen(vbox);
 
     }
-
 
     //airports
     private void showAirportScene() {
@@ -286,7 +265,6 @@ public class AmsGUI extends Application {
 
         vbox.getChildren().addAll(add,delete,show);
 
->>>>>>> b97475d00bb5b0aad64cd9ad3f46ca3cb02621e1
         creatShowScreen(vbox);
     }
     private void addAirportInfo() {
@@ -315,7 +293,8 @@ public class AmsGUI extends Application {
 
     }
 
-    private void showAirportInfo() {
+    private void showAirportInfo() 
+    {
 
         VBox vbox = new VBox();
 
@@ -350,7 +329,22 @@ public class AmsGUI extends Application {
 
     //flight
 
-    private void flightInfo() {
+    private void showFlightScene() {
+        Button add = new Button("Add Flight");
+        Button delete = new Button("Remove Flight");
+        Button show = new Button("Show Flights");
+
+        add.setOnAction(event -> addflightInfo());
+        delete.setOnAction(event -> homeScreen());
+        show.setOnAction(event -> showFlightInfo());
+
+        VBox vbox = new VBox(10, add, delete, show);
+        vbox.setPrefSize(300, 250);
+
+        Scene scene = new Scene(vbox);
+        primaryStage.setScene(scene);
+    }
+    private void addflightInfo() {
 
         Button backButton = new Button("Back to Flight scene");
         backButton.setOnAction(event -> showFlightScene());
@@ -382,21 +376,9 @@ public class AmsGUI extends Application {
         Scene scene = new Scene(vbox);
         primaryStage.setScene(scene);
     }
-
-    private void showFlightScene() {
-        Button add = new Button("Add Flight");
-        Button delete = new Button("Remove Flight");
-        Button show = new Button("Show Flights");
-
-        add.setOnAction(event -> flightInfo());
-        delete.setOnAction(event -> homeScreen());
-        show.setOnAction(event -> homeScreen());
-
-        VBox vbox = new VBox(10, add, delete, show);
-        vbox.setPrefSize(300, 250);
-
-        Scene scene = new Scene(vbox);
-        primaryStage.setScene(scene);
+    
+    private void showFlightInfo(){
+        
     }
 
 
@@ -407,15 +389,18 @@ public class AmsGUI extends Application {
         Button add = new Button("Add Pilot");
         Button delete = new Button("Remove Pilot");
         Button show = new Button("Show Pilots");
-        //add.setOnAction(event -> pilotInfo());
+        add.setOnAction(event -> addPilotInfo());
         delete.setOnAction(event -> showHomeScreen());
-        show.setOnAction(event -> showHomeScreen());
+        show.setOnAction(event -> showPilotInfo());
         vbox.getChildren().addAll(add,delete,show);
         creatShowScreen(vbox);
 
     }
 
-    private void pilotInfo() {
+    private void showPilotInfo() {
+    }
+
+    private void addPilotInfo() {
 
         Button backButton = new Button("Back to Pilot scene");
         backButton.setOnAction(event -> showPilotScene());
@@ -446,31 +431,16 @@ public class AmsGUI extends Application {
     }
 
 
-    //aircraft screen
-    private void showAircraftInfo() {
-
-        VBox vbox = new VBox();
-
-        Label l = new Label("AirCraftView");
-
-        Button addAirport = new Button("Add Air");
-        Button backButton = new Button("Back to Airport scene");
-        backButton.setOnAction(event -> showAirportScene());
-
-        vbox.getChildren().addAll(addAirport,backButton);
-
-        creatShowScreen(vbox);
-
-    }
-
+   
+    //Aircraft screen for Jet and Prop
     private void showJetScene() {
         Button add = new Button("Add Jet");
         Button delete = new Button("Remove Jet");
         Button show = new Button("Show Jets");
 
-        add.setOnAction(event -> jetInfo());
+        add.setOnAction(event -> addJetInfo());
         delete.setOnAction(event -> homeScreen());
-        show.setOnAction(event -> homeScreen());
+        show.setOnAction(event -> showJetInfo());
 
         VBox vbox = new VBox(10, add, delete, show);
         vbox.setPrefSize(300, 250);
@@ -478,8 +448,7 @@ public class AmsGUI extends Application {
         Scene scene = new Scene(vbox);
         primaryStage.setScene(scene);
     }
-
-    private void jetInfo() {
+    private void addJetInfo() {
 
         Button backButton = new Button("Back to Jet scene");
         backButton.setOnAction(event -> showJetScene());
@@ -504,14 +473,18 @@ public class AmsGUI extends Application {
         primaryStage.setScene(scene);
     }
 
+    private void showJetInfo() {
+    }
+
+    
     private void showPropScene() {
         Button add = new Button("Add Prop");
         Button delete = new Button("Remove Prop");
         Button show = new Button("Show Props");
 
-        add.setOnAction(event -> propInfo());
+        add.setOnAction(event -> addPropInfo());
         delete.setOnAction(event -> homeScreen());
-        show.setOnAction(event -> homeScreen());
+        show.setOnAction(event -> showPropInfo());
 
         VBox vbox = new VBox(10, add, delete, show);
         vbox.setPrefSize(300, 250);
@@ -520,7 +493,10 @@ public class AmsGUI extends Application {
         primaryStage.setScene(scene);
     }
 
-    private void propInfo() {
+    private void showPropInfo() {
+    }
+
+    private void addPropInfo() {
 
         Button backButton = new Button("Back to Prop scene");
         backButton.setOnAction(event -> showPropScene());
@@ -551,15 +527,16 @@ public class AmsGUI extends Application {
     }
 
 
+    
     //route and leg
     private void showRouteScene() {
         Button add = new Button("Add Route");
         Button delete = new Button("Remove Route");
         Button show = new Button("Show Routes");
 
-        add.setOnAction(event -> routeInfo());
+        add.setOnAction(event -> addRouteInfo());
         delete.setOnAction(event -> homeScreen());
-        show.setOnAction(event -> homeScreen());
+        show.setOnAction(event -> showRouteInfo());
 
         VBox vbox = new VBox(10, add, delete, show);
         vbox.setPrefSize(300, 250);
@@ -568,7 +545,10 @@ public class AmsGUI extends Application {
         primaryStage.setScene(scene);
     }
 
-    private void routeInfo() {
+    private void showRouteInfo() {
+    }
+
+    private void addRouteInfo() {
 
         Button backButton = new Button("Back to Route scene");
         backButton.setOnAction(event -> showRouteScene());
@@ -589,15 +569,16 @@ public class AmsGUI extends Application {
         Scene scene = new Scene(vbox);
         primaryStage.setScene(scene);
     }
+    
 
     private void showLegScene() {
         Button add = new Button("Add Leg");
         Button delete = new Button("Remove Leg");
         Button show = new Button("Show Legs");
 
-        add.setOnAction(event -> legInfo());
+        add.setOnAction(event -> addLegInfo());
         delete.setOnAction(event -> homeScreen());
-        show.setOnAction(event -> homeScreen());
+        show.setOnAction(event -> showLegInfo());
 
         VBox vbox = new VBox(10, add, delete, show);
         vbox.setPrefSize(300, 250);
@@ -606,7 +587,9 @@ public class AmsGUI extends Application {
         primaryStage.setScene(scene);
     }
 
-    private void legInfo() {
+    private void showLegInfo() {
+    }
+    private void addLegInfo() {
 
         Button backButton = new Button("Back to Leg scene");
         backButton.setOnAction(event -> showLegScene());
@@ -627,7 +610,5 @@ public class AmsGUI extends Application {
         Scene scene = new Scene(vbox);
         primaryStage.setScene(scene);
     }
-
-
 
 }

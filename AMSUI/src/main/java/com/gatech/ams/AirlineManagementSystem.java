@@ -204,17 +204,18 @@ public class AirlineManagementSystem {
         System.out.println("flight successfully retired!");
     }
 
-    public void showAirlines() {
+    public String showAirlines() {
 
         StringBuffer sb = new StringBuffer();
 
         for (Airline airline : airlineList) {
             System.out.println(airline);
-            sb.append(airline + "/n");
+            sb.append(airline);
             //System.out.println("airline " + airline.getAirlineName() + " has a current revenue of: " + airline.getAirlineRevenue() + " USD");
         }
 
         System.out.println("all airlines have been displayed successfully!");
+        return sb.toString();
     }
 
     public String showAirlinesDetail() {
@@ -231,13 +232,16 @@ public class AirlineManagementSystem {
         return sb.toString();
     }
 
-    public void showAirplanes() {
+    public String showAirplanes() {
+        StringBuffer sb = new StringBuffer();
 
         for (Airplane airplane : airplanesList) {
             System.out.println(airplane);
+            sb.append(airplane);
             //System.out.println("airplane " + airplane.getTailNumber() + " is a " + airplane.getPropulsionType() + " with " + airplane.getSeatingCapacity() + " seats and " + airplane.getEngineNum() + " engine(s) that flies " + airplane.getSpeed() + " miles per hour");
         }
         System.out.println("all airplanes have been displayed successfully!");
+        return sb.toString();
     }
 
     public void showAirports() {
@@ -293,6 +297,7 @@ public class AirlineManagementSystem {
             System.out.println("\n");
         }
     }
+
 
     public Airline getAirlineFromAMS(String airlineName) {
         for (Airline a: airlineList) {

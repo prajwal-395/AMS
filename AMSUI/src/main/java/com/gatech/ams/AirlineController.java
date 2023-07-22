@@ -398,7 +398,8 @@ public class AirlineController {
             } else if (tokens[0].equals("show_airplanes")) {
                 System.out.println("DIAGNOSTIC ONLY | no parameters");
 
-                system.showAirplanes();
+                String msg = system.showAirplanes();
+                System.out.println(msg);
 
             } else if (tokens[0].equals("show_airports")) {
                 System.out.println("DIAGNOSTIC ONLY | no parameters");

@@ -424,10 +424,9 @@ public class AmsGUI extends Application {
         Button addFlight = new Button("Add Flight");
         Button backButton = new Button("Back to Flight scene");
         Airline airline = ams.getAirlineFromAMS(airlineName.getText());
-        Flight f = new Flight(airline, flightNum.getText(), Integer.parseInt(cost.getText()),Integer.parseInt(progress.getText()),routeName.getText(),LocalTime.parse(nextTime.getText()),tailNum.getText());
-        addFlight.setOnAction(Event -> ams.createFlight(airlineName.getText(),f));
+        addFlight.setOnAction(Event -> ams.createFlight(airlineName.getText(),new Flight(airline, flightNum.getText(), Integer.parseInt(cost.getText()),Integer.parseInt(progress.getText()),routeName.getText(),LocalTime.parse(nextTime.getText()),tailNum.getText())));
         backButton.setOnAction(event -> showFlightScene());
-       vbox.getChildren().addAll(airlineName,flightNum,cost,progress,routeName,nextTime,tailNum,addFlight,backButton);
+        vbox.getChildren().addAll(airlineName,flightNum,cost,progress,routeName,nextTime,tailNum,addFlight,backButton);
         creatShowScreen(vbox);
     }
     private void showFlightInfo(){
@@ -486,8 +485,7 @@ public class AmsGUI extends Application {
         location.setPromptText("Enter location: ");
         Button addPilot = new Button("Add Pilot");
         Button backButton = new Button("Back to Pilot scene");
-        Pilot p = new Pilot(identifier.getText(),fName.getText(),lName.getText(),taxID.getText(),Integer.parseInt(experience.getText()),location.getText());
-        addPilot.setOnAction(event -> ams.createPilot(p,location.getText()));
+        addPilot.setOnAction(event -> ams.createPilot(new Pilot(identifier.getText(),fName.getText(),lName.getText(),taxID.getText(),Integer.parseInt(experience.getText()),location.getText()), location.getText()));
         backButton.setOnAction(event -> showPilotScene());
         vbox.getChildren().addAll(identifier,fName,lName,taxID,experience,location,addPilot,backButton);
         creatShowScreen(vbox);

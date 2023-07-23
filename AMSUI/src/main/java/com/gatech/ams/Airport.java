@@ -81,5 +81,13 @@ public class Airport {
     public void setPeopleAtAiport(Person personAtAirport) {
         this.peopleAtAirport.add(personAtAirport);
     }
-    
+
+    @Override
+    public String toString() {
+        String airPortStr = "Airport " + this.getIATA() + ": " + this.getAirportName() + " is located in " + this.getCity() + ", "+ this.getState() + " (" + this.getCountry() + ")";
+
+
+        return airPortStr;
+
+    }
 }

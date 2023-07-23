@@ -56,6 +56,14 @@ public class Airline {
     public void assignPilot(String flightNumber, Pilot pilot) {
         Flight flight = getFlightFromAirline(flightNumber);
         Airplane plane = flight.getSupportingAirplane();
+
+        if(flight ==null || plane ==null){
+            System.out.println("error: please check flight Number again.");
+        }
+        if(pilot ==null){
+            System.out.println("error: pilot is null.");
+        }
+
         if ((pilot.getLicenses().contains("jet")) && (plane instanceof Jet) || (pilot.getLicenses().contains("prop")) && (plane instanceof Propeller)) {
             plane.getAssignedPilots().add(pilot);
             System.out.println("Pilot assigned successfully!");

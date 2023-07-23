@@ -393,7 +393,7 @@ public class AirlineController {
             } else if (tokens[0].equals("show_airlines")) {
                 System.out.println("DIAGNOSTIC ONLY | no parameters");
 
-                system.showAirlines();
+                System.out.println(system.showAirlines());
 
             } else if (tokens[0].equals("show_airplanes")) {
                 System.out.println("DIAGNOSTIC ONLY | no parameters");
@@ -404,17 +404,17 @@ public class AirlineController {
             } else if (tokens[0].equals("show_airports")) {
                 System.out.println("DIAGNOSTIC ONLY | no parameters");
 
-                system.showAirports();
+                System.out.println(system.showAirports());
 
             } else if (tokens[0].equals("show_people")) {
                 System.out.println("DIAGNOSTIC ONLY | no parameters");
 
-                system.showPeople();
+                System.out.println(system.showPeople());
 
             } else if (tokens[0].equals("show_routes")) {
                 System.out.println("DIAGNOSTIC ONLY | no parameters");
 
-                system.showRoutes();
+                System.out.println(system.showRoutes());
 
             } else if (tokens[0].equals("stop")) {
                 System.out.println("stop acknowledged");

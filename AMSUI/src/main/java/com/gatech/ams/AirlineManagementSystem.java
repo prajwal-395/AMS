@@ -244,58 +244,88 @@ public class AirlineManagementSystem {
         return sb.toString();
     }
 
-    public void showAirports() {
+    public String showAirports() {
+
+        StringBuffer sb = new StringBuffer();
+
         for (Airport airport : airportList) {
-            System.out.println("airport " + airport.getIATA() + ": " + airport.getAirportName() + " is located in " + airport.getCity() + ", "+ airport.getState() + " (" + airport.getCountry() + ")");
-            System.out.print("  legs to other airports");
+
+            //System.out.println("airport " + airport.getIATA() + ": " + airport.getAirportName() + " is located in " + airport.getCity() + ", "+ airport.getState() + " (" + airport.getCountry() + ")");
+            ////System.out.println("  legs to other airports");
+
+            sb.append(airport);
+            sb.append("  legs to other airports");
+
             for (Leg leg : legList) {
                 if (leg.getDepartAirport() == airport) {
-                    System.out.print(" | " + leg.getDistance() + " --> " + leg.getArrivalAirport().getIATA());
+
+                    //System.out.print(" | " + leg.getDistance() + " --> " + leg.getArrivalAirport().getIATA());
+                    sb.append(leg);
                 }
             }
-            System.out.println("\n");
-            System.out.println("    people waiting at this airport");
+            sb.append("\n");
+            sb.append("    people waiting at this airport");
+            //System.out.println("\n");
+            //System.out.println("    people waiting at this airport");
+
             //TODO there is a NullPointerException on this line as well
             for (Person person : airport.getPeopleAtAirport()) {
-                System.out.print(" | " + person.getIdentifier());
+                //System.out.print(" | " + person.getIdentifier());
+                sb.append(" | " + person.getIdentifier());
             }
         }
+
+        System.out.println(sb.toString());
         System.out.println("all airports have been displayed successfully!");
+
+        return sb.toString();
     }
 
-    public void showPeople() {
+    public String showPeople() {
+
+        StringBuffer sb = new StringBuffer();
+
         for (Pilot pilot : pilotsList) {
-            System.out.println("person " + pilot.getIdentifier() + " is a pilot named: " + pilot.getfName() + " " + pilot.getlName() + " with a tax identifier: " + pilot.getTaxID() + " and experience of " + pilot.getExperience() + " trips");
+           sb.append(pilot);
             if(pilot.getLicenses().size() > 0) {
-                System.out.print("  Qualifications");
+                sb.append("  Qualifications");
                 for (String qualification : pilot.getLicenses()) {
-                    System.out.print(" | " + qualification);
+                    sb.append(" | " + qualification);
                 }
             }
-            System.out.println("\n");
+
+            sb.append("\n");
         }
 
         for (Passenger passenger : passengerList) {
-            System.out.println("person " + passenger.getIdentifier() + " is a passanger named: " + passenger.getfName() + " " + passenger.getlName() + " with " + passenger.getfrequentFlyerMiles() + " frequent flier miles and $" + passenger.getPassengerFunds() + " USD in funds");
+            sb.append(passenger);
             if (passenger.getVacationSpots().size() > 0) {
-                System.out.print("  Vacations");
+                sb.append("  Vacations");
                 for (Airport vacation : passenger.getVacationSpots()) {
-                    System.out.print(" | " + vacation.getIATA());
+                    sb.append(" | " + vacation.getIATA());
                 }
             }
-            System.out.println("\n");
+            sb.append("\n");
         }
+        System.out.println(sb.toString());
         System.out.println("all people have been displayed successfully!");
+        return sb.toString();
     }
 
-    public void showRoutes() {
+    public String showRoutes() {
+
+        StringBuffer sb = new StringBuffer();
+
         for (Route route : routeList) {
-            System.out.print("route " + route.getRouteName() + ": " + route.getDepartsFrom());
+            sb.append("route " + route.getRouteName() + ": " + route.getDepartsFrom());
             for (Leg leg : route.getLegList()) {
-                System.out.print(" --> " + leg.getArrivalAirport());
+                sb.append(" --> " + leg.getArrivalAirport());
             }
-            System.out.println("\n");
+            sb.append("\n");
         }
+        System.out.println(sb.toString());
+
+        return sb.toString();
     }
 
 

@@ -530,7 +530,7 @@ public class AmsGUI extends Application {
     }
     //endregion
 
-    //region
+    //region showAircraft
     private void showAllAircraftInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
@@ -679,8 +679,8 @@ public class AmsGUI extends Application {
         arrivesAt.setPromptText("Enter arrival airport name: ");
         Button addLeg = new Button("Add Leg");
         Button backButton = new Button("Back to showLegScene scene");
-        Airport oDepartsFrom = ams.getAirportFromAMS(departsFrom.getText());
-        Airport oArrivesAt = ams.getAirportFromAMS(arrivesAt.getText());
+        //Airport oDepartsFrom = ams.getAirportFromAMS(departsFrom.getText());
+        //Airport oArrivesAt = ams.getAirportFromAMS(arrivesAt.getText());
         addLeg.setOnAction(event -> ams.createLeg(departsFrom.getText(),distance.getText(), arrivesAt.getText()));
         backButton.setOnAction(event -> showLegScene());
         vbox.getChildren().addAll(departsFrom,distance,arrivesAt,addLeg,backButton);
@@ -724,12 +724,16 @@ public class AmsGUI extends Application {
         hop.setPromptText("Enter first hop: ");
         Button addRoute = new Button("Add Route");
         Button backButton = new Button("Back to showRouteScene scene");
-        Airport a = ams.getAirportFromAMS(departsFrom.getText());
-        addRoute.setOnAction(event -> ams.createRoute(new Route(name.getText(),a), departsFrom.getText(), hop.getText()));
+        //Airport a = ams.getAirportFromAMS(departsFrom.getText());
+        addRoute.setOnAction(event -> ams.createRoute(new Route(name.getText(),
+                                    ams.getAirportFromAMS(departsFrom.getText())),
+                                                        departsFrom.getText(), hop.getText()));
         backButton.setOnAction(event -> showRouteScene());
         vbox.getChildren().addAll(name,departsFrom,hop,addRoute,backButton);
         creatShowScreen(vbox);
     }
+
+
     //endregion
 
 }

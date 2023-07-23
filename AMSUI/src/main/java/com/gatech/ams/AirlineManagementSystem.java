@@ -235,6 +235,31 @@ public class AirlineManagementSystem {
         return sb.toString();
     }
 
+    public String showJetAirplanes() {
+        StringBuffer sb = new StringBuffer();
+
+        for (Airplane airplane : airplanesList) {
+            if(airplane.getPropulsionType().equals("jet")) {
+                sb.append(airplane);
+                //System.out.println("airplane " + airplane.getTailNumber() + " is a " + airplane.getPropulsionType() + " with " + airplane.getSeatingCapacity() + " seats and " + airplane.getEngineNum() + " engine(s) that flies " + airplane.getSpeed() + " miles per hour");
+            }
+        }
+        System.out.println("all airplanes have been displayed successfully!");
+        return sb.toString();
+    }
+    public String showPropAirplanes() {
+        StringBuffer sb = new StringBuffer();
+
+        for (Airplane airplane : airplanesList) {
+            if(airplane.getPropulsionType().equals("prop")) {
+                sb.append(airplane);
+                //System.out.println("airplane " + airplane.getTailNumber() + " is a " + airplane.getPropulsionType() + " with " + airplane.getSeatingCapacity() + " seats and " + airplane.getEngineNum() + " engine(s) that flies " + airplane.getSpeed() + " miles per hour");
+            }
+        }
+        System.out.println("all airplanes have been displayed successfully!");
+        return sb.toString();
+    }
+
     public String showAirports() {
 
         StringBuffer sb = new StringBuffer();
@@ -256,14 +281,17 @@ public class AirlineManagementSystem {
             }
             sb.append("\n");
             sb.append("    people waiting at this airport");
+            sb.append("\n");
             //System.out.println("\n");
             //System.out.println("    people waiting at this airport");
 
             //TODO there is a NullPointerException on this line as well
+            if(airport.getPeopleAtAirport() ==null) continue;
             for (Person person : airport.getPeopleAtAirport()) {
                 //System.out.print(" | " + person.getIdentifier());
                 sb.append(" | " + person.getIdentifier());
             }
+            sb.append("\n");
         }
 
         System.out.println(sb.toString());

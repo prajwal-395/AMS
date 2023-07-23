@@ -7,9 +7,15 @@ import java.util.Scanner;
 
 public class AirlineController {
 
-    AirlineManagementSystem system = new AirlineManagementSystem();
+    AirlineManagementSystem system = null;
     //constructor for Airline Controller to use the universal methods of the class
-    public AirlineController() {};
+    public AirlineController() {
+        system = new AirlineManagementSystem();
+    };
+
+    public AirlineController(AirlineManagementSystem ams) {
+        system = ams;
+    };
 
     public void commandLoop() {
         Scanner commandLineInput = new Scanner(System.in);

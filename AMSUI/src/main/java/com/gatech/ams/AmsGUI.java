@@ -33,6 +33,8 @@ public class AmsGUI extends Application {
 
         ams = new AirlineManagementSystem();
 
+        populateSystem(ams);
+
         this.primaryStage = stage;
         stage.setResizable(true);
         stage.setX(x);
@@ -44,6 +46,11 @@ public class AmsGUI extends Application {
         primaryStage.setScene(homeScene);
         primaryStage.show();
 
+    }
+
+    private void populateSystem(AirlineManagementSystem ams) {
+        AirlineController simulator = new AirlineController(ams);
+        simulator.TestCommandLoop();
     }
 
     public static void main(String[] args) {
@@ -175,7 +182,7 @@ public class AmsGUI extends Application {
         mShowJets.setOnAction(actionEvent -> showJetInfo());
         mAddProps.setOnAction(actionEvent -> addPropInfo());
         mShowProps.setOnAction(actionEvent -> showPropInfo());
-        mShowProps.setOnAction(actionEvent -> showPropInfo()); // todo showAllAircraftsInfo());
+        mshowAircraft.setOnAction(actionEvent -> showAllAircraftInfo()); // todo showAllAircraftsInfo());
         //endregion
 
         //region People Menu Section
@@ -501,6 +508,22 @@ public class AmsGUI extends Application {
     }
     //endregion
 
+    //region
+    private void showAllAircraftInfo() {
+        VBox vbox = new VBox();
+        vbox.setPadding(new Insets(10,10,10,10));
+        vbox.setSpacing(10);
+        Label l = new Label("Airplane View");
+        String s = ams.showAirplanes(); //Todo
+        l.setText(s);
+        Button backButton = new Button("Back to Jet scene");
+        backButton.setOnAction(event -> showJetScene());
+        vbox.getChildren().addAll(l,backButton);
+        creatShowScreen(vbox);
+    }
+
+    //endregion
+
     //region Jet Section
     private void showJetScene() {
         VBox vbox = new VBox();
@@ -540,7 +563,7 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Label l = new Label("JetView");
-        String s = ams.showAirplanes(); //Todo
+        String s = ams.showJetAirplanes(); //Todo
         l.setText(s);
         Button backButton = new Button("Back to Jet scene");
         backButton.setOnAction(event -> showJetScene());
@@ -566,7 +589,7 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Label l = new Label("Propellor View");
-        String s = ams.showAirplanes();
+        String s = ams.showPropAirplanes();
         l.setText(s);
         Button backButton = new Button("Back to Propellor scene");
         backButton.setOnAction(event -> showPropScene());

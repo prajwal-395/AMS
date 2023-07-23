@@ -285,6 +285,18 @@ public class AirlineManagementSystem {
 
         StringBuffer sb = new StringBuffer();
 
+        sb.append(showPilots());
+
+        sb.append(showPilots());
+
+        //System.out.println(sb.toString());
+        System.out.println("all people have been displayed successfully!");
+        return sb.toString();
+    }
+    public String showPilots() {
+
+        StringBuffer sb = new StringBuffer();
+
         for (Pilot pilot : pilotsList) {
            sb.append(pilot);
             if(pilot.getLicenses().size() > 0) {
@@ -297,6 +309,16 @@ public class AirlineManagementSystem {
             sb.append("\n");
         }
 
+
+        System.out.println(sb.toString());
+        System.out.println("All pilots have been displayed successfully!");
+        return sb.toString();
+    }
+
+    public String showPassenger() {
+
+        StringBuffer sb = new StringBuffer();
+
         for (Passenger passenger : passengerList) {
             sb.append(passenger);
             if (passenger.getVacationSpots().size() > 0) {
@@ -308,7 +330,7 @@ public class AirlineManagementSystem {
             sb.append("\n");
         }
         System.out.println(sb.toString());
-        System.out.println("all people have been displayed successfully!");
+        System.out.println("All passenger have been displayed successfully!");
         return sb.toString();
     }
 

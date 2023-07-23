@@ -100,6 +100,10 @@ public class Flight {
             long mins = Math.round(time * 60);
             arrivalTime = arrivalTime.plusMinutes(mins);
         }
+    }
 
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

@@ -12,5 +12,8 @@ public class Jet extends Airplane {
         return "jet";
     }
 
-
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

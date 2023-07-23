@@ -136,6 +136,8 @@ public class Airplane {
 
     @Override
     public String toString() {
-        return "Airplane " + this.getTailNumber() + " is a " + this.getPropulsionType() + " with " + this.getSeatingCapacity() + " seats and " + this.getEngineNum() + " engine(s) that flies " + this.getSpeed() + " miles per hour";
+        return "Airplane " + this.getTailNumber() + " is a " + this.getPropulsionType() + " with "
+                + this.getSeatingCapacity() + " seats and " + this.getEngineNum()
+                + " engine(s) that flies " + this.getSpeed() + " miles per hour" + System.lineSeparator();
     }
 }

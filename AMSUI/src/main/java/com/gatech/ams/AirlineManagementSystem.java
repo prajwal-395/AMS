@@ -213,7 +213,7 @@ public class AirlineManagementSystem {
         StringBuffer sb = new StringBuffer();
 
         for (Airline airline : airlineList) {
-            System.out.println(airline);
+            //System.out.println(airline);
             sb.append(airline);
             //System.out.println("airline " + airline.getAirlineName() + " has a current revenue of: " + airline.getAirlineRevenue() + " USD");
         }
@@ -227,7 +227,7 @@ public class AirlineManagementSystem {
         StringBuffer sb = new StringBuffer();
 
         for (Airplane airplane : airplanesList) {
-            System.out.println(airplane);
+            //System.out.println(airplane);
             sb.append(airplane);
             //System.out.println("airplane " + airplane.getTailNumber() + " is a " + airplane.getPropulsionType() + " with " + airplane.getSeatingCapacity() + " seats and " + airplane.getEngineNum() + " engine(s) that flies " + airplane.getSpeed() + " miles per hour");
         }
@@ -278,7 +278,7 @@ public class AirlineManagementSystem {
 
         sb.append(showPilots());
 
-        sb.append(showPilots());
+        sb.append(showPassenger());
 
         //System.out.println(sb.toString());
         System.out.println("all people have been displayed successfully!");

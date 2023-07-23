@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.time.LocalTime;
 
 public class AmsGUI extends Application {
 
@@ -319,7 +320,7 @@ public class AmsGUI extends Application {
         location.setPromptText("Enter Location: ");
         Button addPassenger = new Button("Add Passenger");
         Button backButton = new Button("Back to Passenger scene");
-        //addPassenger.setOnAction(event -> ams.createPassenger(new Passenger(id.getText(),fname.getText(),lname.getText(),Integer.parseInt(ffmiles.getText()),Integer.parseInt(pfunds.getText()),location.getText()))));
+        addPassenger.setOnAction(event -> ams.createPassenger(new Passenger(id.getText(), fname.getText(), lname.getText(), Integer.parseInt(ffmiles.getText()), Integer.parseInt(pfunds.getText()), location.getText()), location.getText()));
         backButton.setOnAction(event -> showPassengerScene());
         vbox.getChildren().addAll(id,fname,lname,ffmiles,pfunds,location,addPassenger,backButton);
         creatShowScreen(vbox);
@@ -359,8 +360,10 @@ public class AmsGUI extends Application {
         Button addFlight = new Button("Add Flight");
         Button backButton = new Button("Back to Flight scene");
         //addFlight.setOnAction(Event -> ams.createFlight(new Flight(flightNum.getText(),airlineName.getText(),)));
+      //  system.createFlight(airlineName.getText(), new Flight(airline, tokens[2], Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4]), tokens[5], LocalTime.parse(tokens[6]), tokens[7]));
+
         backButton.setOnAction(event -> showFlightScene());
-        vbox.getChildren().addAll(airlineName,flightNum,cost,progress,routeName,nextTime,tailNum,addFlight,backButton);
+       // vbox.getChildren().addAll(airlineName.getText(),flightNum,cost,progress,routeName,nextTime,tailNum,addFlight,backButton);
         creatShowScreen(vbox);
     }
     private void showFlightInfo(){
@@ -420,11 +423,9 @@ public class AmsGUI extends Application {
         Button addPilot = new Button("Add Pilot");
         Button backButton = new Button("Back to Pilot scene");
         Pilot p = new Pilot(identifier.getText(),fName.getText(),lName.getText(),taxID.getText(),Integer.parseInt(experience.getText()),location.getText());
-        //addPilot.setOnAction(event -> ams.createPilot(p));
+        addPilot.setOnAction(event -> ams.createPilot(p,location.getText()));
         backButton.setOnAction(event -> showPilotScene());
-
-
-        // vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
+        vbox.getChildren().addAll(identifier,fName,lName,taxID,experience,location,addPilot,backButton);
         creatShowScreen(vbox);
 
     }

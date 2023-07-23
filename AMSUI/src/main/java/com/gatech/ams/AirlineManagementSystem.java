@@ -172,7 +172,9 @@ public class AirlineManagementSystem {
             Flight flight = airline.getFlightFromAirline(flightNumber);
             if (flight != null) {
                 Airplane plane = flight.getSupportingAirplane();
-                plane.passengersBoard(airline, flight);
+                if(plane !=null) {
+                    plane.passengersBoard(airline, flight);
+                }
             }
         }
         System.out.println("passengers successfully boarded!");
@@ -185,7 +187,9 @@ public class AirlineManagementSystem {
             Flight flight = airline.getFlightFromAirline(flightNumber);
             if (flight != null) {
                 Airplane plane = flight.getSupportingAirplane();
-                plane.passengersDisembark(airline, flight);
+                if(plane !=null) {
+                    plane.passengersDisembark(airline, flight);
+                }
             }
         }
         System.out.println("passengers successfully disembarked!");
@@ -218,19 +222,6 @@ public class AirlineManagementSystem {
         return sb.toString();
     }
 
-    public String showAirlinesDetail() {
-
-        StringBuffer sb = new StringBuffer();
-
-        for (Airline airline : airlineList) {
-            System.out.println(airline);
-            sb.append(airline);
-            //System.out.println("airline " + airline.getAirlineName() + " has a current revenue of: " + airline.getAirlineRevenue() + " USD");
-        }
-
-        //System.out.println("all airlines have been displayed successfully!");
-        return sb.toString();
-    }
 
     public String showAirplanes() {
         StringBuffer sb = new StringBuffer();

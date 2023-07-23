@@ -222,7 +222,7 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Label l = new Label("AirlineView");
-        String s = ams.showAirlinesDetail();
+        String s = ams.showAirlines();
         l.setText(s);
         Button backButton = new Button("Back to Airline scene");
         backButton.setOnAction(event -> showAirlineScene());
@@ -371,7 +371,7 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Label l = new Label("FlightView");
-        String s = ""; // ams.showFlightDetals(); Todo
+        String s =  ""; //ams.showFlight(); Todo
         l.setText(s);
         Button backButton = new Button("Back to Flight scene");
         backButton.setOnAction(event -> showFlightScene());
@@ -470,7 +470,7 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Label l = new Label("JetView");
-        String s = ""; // ams.showJetDetals(); Todo
+        String s = ams.showAirplanes(); //Todo
         l.setText(s);
         Button backButton = new Button("Back to Jet scene");
         backButton.setOnAction(event -> showJetScene());
@@ -496,7 +496,7 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Label l = new Label("Propellor View");
-        String s = "" ; // ams.showPropellor
+        String s = ams.showAirplanes();
         l.setText(s);
         Button backButton = new Button("Back to Propellor scene");
         backButton.setOnAction(event -> showPropScene());
@@ -563,7 +563,7 @@ public class AmsGUI extends Application {
         hop.setPromptText("Enter first hop: ");
         Button addRoute = new Button("Add Route");
         Button backButton = new Button("Back to showRouteScene scene");
-        //addJet.setOnAction(event -> ams.createRoute(new Route(name.getText()),departure.getText(),hop.getText()));
+        //addRoute.setOnAction(event -> ams.createRoute(new Route(name.getText()),departure.getText(),hop.getText()));
         backButton.setOnAction(event -> showRouteScene());
         vbox.getChildren().addAll(name,departure,hop,addRoute,backButton);
         creatShowScreen(vbox);

@@ -75,11 +75,18 @@ public class Airline {
     public void flightLanding(String flightNumber) {
         Flight flight = getFlightFromAirline(flightNumber);
         Airplane plane = flight.getSupportingAirplane();
-        Leg newLandedLocation = flight.getRoute().getLegList().get(flight.getProgessState());
+        Leg newLandedLocation = null;
+        if(flight !=null && flight.getRoute() !=null && flight.getRoute().getLegList() !=null) {
+            newLandedLocation = flight.getRoute().getLegList().get(flight.getProgessState());
+        }
         // set the inAir boolean in plane to false
-        plane.setInAir(false);
+        if(plane !=null) {
+            plane.setInAir(false);
+        }
         // add experience to pilots and frequent flier miles to passangers
         // update the locations of all the people on the plane
+        if(newLandedLocation ==null) return;
+
         int numMiles = newLandedLocation.getDistance();
         for (Pilot pilot : plane.getAssignedPilots()) {
             pilot.setExperience(pilot.getExperience() + 1);
@@ -106,14 +113,16 @@ public class Airline {
     public void flightTakeoff(String flightNumber) {
         Flight flight = getFlightFromAirline(flightNumber);
         Airplane plane = flight.getSupportingAirplane();
+        if(plane !=null) {
+            plane.setInAir(true);
+        }
+        else return;
 
-        plane.setInAir(true);
-
-        if ((plane.getAssignedPilots().size() > 1) && (plane instanceof Propeller)) {
+        if ((plane.getAssignedPilots() !=null && plane.getAssignedPilots().size() > 1) && (plane instanceof Propeller)) {
             for (Pilot pilot : plane.getAssignedPilots()) {
                 pilot.getLicenses().contains("jet");
             }
-        } else if ((plane.getAssignedPilots().size() > 2) && (plane instanceof Jet)) {
+        } else if ((plane.getAssignedPilots()!=null && plane.getAssignedPilots().size() > 2) && (plane instanceof Jet)) {
             for (Pilot pilot : plane.getAssignedPilots()) {
                 pilot.getLicenses().contains("jet");
             }
@@ -128,12 +137,23 @@ public class Airline {
         // Check to see that flight is completed? And there are no more passengers on the flight
         
         // Unassign pilots from supporting airplane
-        plane.getAssignedPilots().clear();
+        if(plane !=null && plane.getAssignedPilots() !=null) {
+            plane.getAssignedPilots().clear();
+        }
+
         // Unassign airplane from Flight
-        flight.setSupportingAirplane(null);
+        if(flight !=null ) {
+            flight.setSupportingAirplane(null);
+        }
         // Remove flight from flight arraylist
-        flightsOfAirline.remove(flight);
+        if(flightsOfAirline !=null) {
+            flightsOfAirline.remove(flight);
+        }
         // Remove flight from universal flight list
+//        if(flightsOfAirline !=null){
+//            this.getFlightOfAirline().remove(flightsOfAirline);
+//        }
+
     }
 
     @Override

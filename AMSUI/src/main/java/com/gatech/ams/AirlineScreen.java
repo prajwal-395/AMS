@@ -51,7 +51,7 @@ public class AirlineScreen {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Label l = new Label("AirlineView");
-        String s = ams.showAirlinesDetail();
+        String s = ams.showAirlines();
         l.setText(s);
         Button backButton = new Button("Back to Airline scene");
         backButton.setOnAction(event -> showAirlineScene());

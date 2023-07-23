@@ -9,8 +9,5 @@
         <module name="ams" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ams" target="20" />
-    </bytecodeTargetLevel>
   </component>
 </project>

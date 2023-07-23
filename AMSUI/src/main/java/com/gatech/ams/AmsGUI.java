@@ -1,6 +1,7 @@
 package com.gatech.ams;
 
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
@@ -250,8 +251,7 @@ public class AmsGUI extends Application {
         vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
         creatShowScreen(vbox);
     }
-    private void showAirportInfo() 
-    {
+    private void showAirportInfo() {
         VBox vbox = new VBox();
         Label l = new Label("AirPortView");
         String s = ""; //ams.showAirportDetails(); Todo
@@ -264,7 +264,6 @@ public class AmsGUI extends Application {
     //endregion
 
     //region Passenger Section
-    //passenger
     private void showPassengerScene() {
         VBox vbox = new VBox();
         Button add = new Button("Add Passenger");
@@ -309,60 +308,52 @@ public class AmsGUI extends Application {
     }
     //endregion
 
-
-    //flight
-
+    //region Flight Section
     private void showFlightScene() {
+        VBox vbox = new VBox();
         Button add = new Button("Add Flight");
         Button delete = new Button("Remove Flight");
         Button show = new Button("Show Flights");
-
         add.setOnAction(event -> addflightInfo());
-        delete.setOnAction(event -> homeScreen());
+        delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showFlightInfo());
-
-        VBox vbox = new VBox(10, add, delete, show);
-        vbox.setPrefSize(300, 250);
-
-        Scene scene = new Scene(vbox);
-        primaryStage.setScene(scene);
+        vbox.getChildren().addAll(add,delete,show);
+        creatShowScreen(vbox);
     }
     private void addflightInfo() {
-
-        Button backButton = new Button("Back to Flight scene");
-        backButton.setOnAction(event -> showFlightScene());
-
+        VBox vbox = new VBox();
         TextField airlineName = new TextField();
         airlineName.setPromptText("Enter airline name: ");
-
         TextField flightNum = new TextField();
         flightNum.setPromptText("Enter flight number: ");
-
         TextField cost = new TextField();
         cost.setPromptText("Enter flight cost: ");
-
         TextField progress = new TextField();
         progress.setPromptText("Enter route progress: ");
-
         TextField routeName = new TextField();
         routeName.setPromptText("Enter route name: ");
-
         TextField nextTime = new TextField();
         nextTime.setPromptText("Enter next_status_change: ");
-
         TextField tailNum = new TextField();
         tailNum.setPromptText("Enter aircraft tail number: ");
-
-        VBox vbox = new VBox(10, airlineName, flightNum, cost, progress, routeName, nextTime, tailNum, backButton);
-        vbox.setPrefSize(300, 250);
-
-        Scene scene = new Scene(vbox);
-        primaryStage.setScene(scene);
+        Button addFlight = new Button("Add Flight");
+        Button backButton = new Button("Back to Flight scene");
+        //addFlight.setOnAction(Event -> ams.createFlight(new Flight(flightNum.getText(),airlineName.getText(),)));
+        backButton.setOnAction(event -> showFlightScene());
+        vbox.getChildren().addAll(airlineName,flightNum,cost,progress,routeName,nextTime,tailNum,addFlight,backButton);
+        creatShowScreen(vbox);
     }
-    
     private void showFlightInfo(){
-        
+        VBox vbox = new VBox();
+        Label l = new Label("FlightView");
+        String s = ""; // ams.showFlightDetals(); Todo
+        l.setText(s);
+        Button backButton = new Button("Back to Flight scene");
+        backButton.setOnAction(event -> showFlightScene());
+        vbox.getChildren().addAll(l,backButton);
+        creatShowScreen(vbox);
     }
+    //endregion
 
 
     //pilot
@@ -377,7 +368,6 @@ public class AmsGUI extends Application {
         show.setOnAction(event -> showPilotInfo());
         vbox.getChildren().addAll(add,delete,show);
         creatShowScreen(vbox);
-
     }
 
     private void showPilotInfo() {
@@ -417,43 +407,34 @@ public class AmsGUI extends Application {
    
     //Aircraft screen for Jet and Prop
     private void showJetScene() {
+        VBox vbox = new VBox();
         Button add = new Button("Add Jet");
         Button delete = new Button("Remove Jet");
         Button show = new Button("Show Jets");
-
         add.setOnAction(event -> addJetInfo());
         delete.setOnAction(event -> homeScreen());
         show.setOnAction(event -> showJetInfo());
-
-        VBox vbox = new VBox(10, add, delete, show);
-        vbox.setPrefSize(300, 250);
-
-        Scene scene = new Scene(vbox);
-        primaryStage.setScene(scene);
+        vbox.getChildren().addAll(add,delete,show);
+        creatShowScreen(vbox);
     }
     private void addJetInfo() {
-
-        Button backButton = new Button("Back to Jet scene");
-        backButton.setOnAction(event -> showJetScene());
-
+        VBox vbox = new VBox();
+       // vbox.setPadding(new Insets(10,10,10,10));
+        vbox.setSpacing(10);
         TextField tailNum = new TextField();
         tailNum.setPromptText("Enter tail number: ");
-
         TextField seatCap = new TextField();
         seatCap.setPromptText("Enter seating capacity: ");
-
         TextField speed = new TextField();
         speed.setPromptText("Enter speed: ");
-
         TextField engines = new TextField();
         engines.setPromptText("Enter number of engines: ");
-
-
-        VBox vbox = new VBox(10, tailNum, seatCap, speed, engines, backButton);
-        vbox.setPrefSize(300, 250);
-
-        Scene scene = new Scene(vbox);
-        primaryStage.setScene(scene);
+        Button addJet = new Button("Add Jet");
+        Button backButton = new Button("Back to Airline scene");
+        //addJet.setOnAction(event -> ams.createJet(new Airline(name.getText(),Double.parseDouble(revenue.getText()))));
+        backButton.setOnAction(event -> showJetScene());
+        vbox.getChildren().addAll(tailNum,seatCap,speed,engines, addJet,backButton);
+        creatShowScreen(vbox);
     }
 
     private void showJetInfo() {

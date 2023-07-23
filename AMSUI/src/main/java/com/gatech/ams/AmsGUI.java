@@ -130,12 +130,17 @@ public class AmsGUI extends Application {
         MenuItem mAirport1 = new MenuItem("Show Airport");
         airportMenu.getItems().add(mAirport1);
 
+        //create menu item for Flight
+        MenuItem mFlight1 = new MenuItem("Show Flights");
+        flightMenu.getItems().add(mFlight1);
+
         // create menuitems for Aircrafts
         MenuItem mAircraft1 = new MenuItem("Jets");
         MenuItem mAircraft2 = new MenuItem("Props");
         // add menu items to menu
         aircraftMenu.getItems().add(mAircraft1);
         aircraftMenu.getItems().add(mAircraft2);
+
 
         // create menuitems for People
         MenuItem mPeople1 = new MenuItem("Pilots");
@@ -188,12 +193,10 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Button add = new Button("Add Airline");
-        Button delete = new Button("Remove Airline");
         Button show = new Button("Show Airlines");
         add.setOnAction(event -> addAirlineInfo());
-        delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showAirlineInfo());
-        vbox.getChildren().addAll(add,delete,show);
+        vbox.getChildren().addAll(add,show);
         creatShowScreen(vbox);
     }
     //add airline screen
@@ -233,12 +236,10 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Button add = new Button("Add Airport");
-        Button delete = new Button("Remove Airport");
         Button show = new Button("Show Airports");
         add.setOnAction(event -> addAirportInfo());
-        delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showAirportInfo());
-        vbox.getChildren().addAll(add,delete,show);
+        vbox.getChildren().addAll(add,show);
         creatShowScreen(vbox);
     }
     private void addAirportInfo() {
@@ -267,7 +268,7 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Label l = new Label("AirPortView");
-        String s = ""; //ams.showAirportDetails(); Todo
+        String s = ams.showAirports();
         l.setText(s);
         Button backButton = new Button("Back to Airport scene");
         backButton.setOnAction(event -> showAirportScene());
@@ -282,12 +283,10 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Button add = new Button("Add Passenger");
-        Button delete = new Button("Remove Passenger");
         Button show = new Button("Show Passengers");
         add.setOnAction(event -> addPassengerInfo());
-        delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showPassengerInfo());
-        vbox.getChildren().addAll(add,delete,show);
+        vbox.getChildren().addAll(add,show);
         creatShowScreen(vbox);
     }
     private void showPassengerInfo() {
@@ -295,7 +294,7 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Label l = new Label("PassengerView");
-        String s = ""; //ams.showPassengerDetails(); Todo
+        String s = ams.showPassenger();
         l.setText(s);
         Button backButton = new Button("Back to Passenger scene");
         backButton.setOnAction(event -> showPassengerScene());
@@ -333,12 +332,10 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Button add = new Button("Add Flight");
-        Button delete = new Button("Remove Flight");
         Button show = new Button("Show Flights");
         add.setOnAction(event -> addflightInfo());
-        delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showFlightInfo());
-        vbox.getChildren().addAll(add,delete,show);
+        vbox.getChildren().addAll(add,show);
         creatShowScreen(vbox);
     }
     private void addflightInfo() {
@@ -386,12 +383,10 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Button add = new Button("Add Pilot");
-        Button delete = new Button("Remove Pilot");
         Button show = new Button("Show Pilots");
         add.setOnAction(event -> addPilotInfo());
-        delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showPilotInfo());
-        vbox.getChildren().addAll(add,delete,show);
+        vbox.getChildren().addAll(add,show);
         creatShowScreen(vbox);
     }
     private void showPilotInfo() {
@@ -399,7 +394,7 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Label l = new Label("PilotView");
-        String s = ""; //ams.showPilotDetails(); Todo
+        String s = ams.showPilots();
         l.setText(s);
         Button backButton = new Button("Back to Pilot scene");
         backButton.setOnAction(event -> showPilotScene());
@@ -441,12 +436,10 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Button add = new Button("Add Jet");
-        Button delete = new Button("Remove Jet");
         Button show = new Button("Show Jets");
         add.setOnAction(event -> addJetInfo());
-        delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showJetInfo());
-        vbox.getChildren().addAll(add,delete,show);
+        vbox.getChildren().addAll(add,show);
         creatShowScreen(vbox);
     }
     private void addJetInfo() {
@@ -491,12 +484,10 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Button add = new Button("Add Prop");
-        Button delete = new Button("Remove Prop");
         Button show = new Button("Show Props");
         add.setOnAction(event -> addPropInfo());
-        delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showPropInfo());
-        vbox.getChildren().addAll(add,delete,show);
+        vbox.getChildren().addAll(add,show);
         creatShowScreen(vbox);
     }
     private void showPropInfo() {
@@ -504,7 +495,7 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Label l = new Label("Propellor View");
-        String s = ""; // ams.showPropDetals(); Todo
+        String s = "" ; // ams.showPropellor
         l.setText(s);
         Button backButton = new Button("Back to Propellor scene");
         backButton.setOnAction(event -> showPropScene());
@@ -541,12 +532,10 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Button add = new Button("Add Route");
-        Button delete = new Button("Remove Route");
         Button show = new Button("Show Routes");
         add.setOnAction(event -> addRouteInfo());
-        delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showRouteInfo());
-        vbox.getChildren().addAll(add,delete,show);
+        vbox.getChildren().addAll(add,show);
         creatShowScreen(vbox);
     }
     private void showRouteInfo() {
@@ -554,7 +543,7 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Label l = new Label("Routes View");
-        String s = ""; // ams.showRouteDetals(); Todo
+        String s = ams.showRoutes();
         l.setText(s);
         Button backButton = new Button("Back to Routes scene");
         backButton.setOnAction(event -> showRouteScene());
@@ -586,12 +575,10 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Button add = new Button("Add Leg");
-        Button delete = new Button("Remove Leg");
         Button show = new Button("Show Legs");
         add.setOnAction(event -> addLegInfo());
-        delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showLegInfo());
-        vbox.getChildren().addAll(add,delete,show);
+        vbox.getChildren().addAll(add,show);
         creatShowScreen(vbox);
     }
     private void showLegInfo() {
@@ -599,7 +586,7 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Label l = new Label("Leg View");
-        String s = ""; // ams.showLegDetals(); Todo
+        String s = ""; //
         l.setText(s);
         Button backButton = new Button("Back to Leg scene");
         backButton.setOnAction(event -> showLegScene());

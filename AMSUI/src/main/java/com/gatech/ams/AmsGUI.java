@@ -119,43 +119,109 @@ public class AmsGUI extends Application {
         Menu aircraftMenu = new Menu("Aircrafts");
         Menu routeMenu = new Menu("Route Mgmt");
 
-
+        //region Airline Menu Section
         // create menuitems for Airlines
-        MenuItem m1 = new MenuItem("Show Airlines");
-        MenuItem m2 = new MenuItem("Search Airlines");
+        MenuItem mShowAirlines = new MenuItem("Show Airlines");
+        MenuItem mAddAirlines = new MenuItem("Add Airlines");
         // add menu items to menu
-        airlineMenu.getItems().add(m1);
-        airlineMenu.getItems().add(m2);
+        airlineMenu.getItems().add(mShowAirlines);
+        airlineMenu.getItems().add(mAddAirlines);
+        // Set events for menu items
+        mAddAirlines.setOnAction(actionEvent -> addAirlineInfo());
+        mShowAirlines.setOnAction(actionEvent -> showAirlineInfo());
+    //endregion
 
+        //region Airport Menu Section
         //create menu item for Airport
-        MenuItem mAirport1 = new MenuItem("Show Airport");
-        airportMenu.getItems().add(mAirport1);
+        MenuItem mShowAirport = new MenuItem("Show Airport");
+        MenuItem mAddAirport = new MenuItem("Add Airport");
+        // add menu items to menu
+        airportMenu.getItems().add(mShowAirport);
+        airportMenu.getItems().add(mAddAirport);
+        // Set events for menu items
+        mAddAirport.setOnAction(actionEvent -> addAirportInfo());
+        mShowAirport.setOnAction(actionEvent -> showAirportInfo());
+        //endregion
 
+        //region Flight Menu Section
         //create menu item for Flight
-        MenuItem mFlight1 = new MenuItem("Show Flights");
-        flightMenu.getItems().add(mFlight1);
-
-        // create menuitems for Aircrafts
-        MenuItem mAircraft1 = new MenuItem("Jets");
-        MenuItem mAircraft2 = new MenuItem("Props");
+        MenuItem mShowFlight = new MenuItem("Show Flight");
+        MenuItem mAddFlight = new MenuItem("Add Flight");
         // add menu items to menu
-        aircraftMenu.getItems().add(mAircraft1);
-        aircraftMenu.getItems().add(mAircraft2);
+        flightMenu.getItems().add(mShowFlight);
+        flightMenu.getItems().add(mAddFlight);
+        // Set events for menu items
+        mAddFlight.setOnAction(actionEvent -> addFlightInfo());
+        mShowFlight.setOnAction(actionEvent -> showFlightInfo());
+        //endregion
 
+        //region Aircrafts Menu Section
+        //create menu item for Flight
+        MenuItem mShowJets = new MenuItem("Show Jets");
+        MenuItem mAddJets = new MenuItem("Add Jets");
+        MenuItem mShowProps = new MenuItem("Show Propellors");
+        MenuItem mAddProps = new MenuItem("Add Propellors");
+        MenuItem mshowAircraft = new MenuItem("Show All Aircrafts");
 
-        // create menuitems for People
-        MenuItem mPeople1 = new MenuItem("Pilots");
-        MenuItem mPeople2 = new MenuItem("Passengers");
         // add menu items to menu
-        peopleMenu.getItems().add(mPeople1);
-        peopleMenu.getItems().add(mPeople2);
+        aircraftMenu.getItems().add(mShowJets);
+        aircraftMenu.getItems().add(mAddJets);
+        aircraftMenu.getItems().add(mShowProps);
+        aircraftMenu.getItems().add(mAddProps);
+        aircraftMenu.getItems().add(mshowAircraft);
 
-        // create menuitems for Route Management
-        MenuItem mRoute1 = new MenuItem("Routes");
-        MenuItem mRoute2 = new MenuItem("Legs");
+        // Set events for menu items
+        mAddJets.setOnAction(actionEvent -> addJetInfo());
+        mShowJets.setOnAction(actionEvent -> showJetInfo());
+        mAddProps.setOnAction(actionEvent -> addPropInfo());
+        mShowProps.setOnAction(actionEvent -> showPropInfo());
+        mShowProps.setOnAction(actionEvent -> showPropInfo()); // todo showAllAircraftsInfo());
+        //endregion
+
+        //region People Menu Section
+        //create menu item for Flight
+        MenuItem mShowPass = new MenuItem("Show Passengers");
+        MenuItem mAddPass = new MenuItem("Add Passengers");
+        MenuItem mShowPilot = new MenuItem("Show Pilots");
+        MenuItem mAddPilot = new MenuItem("Add Pilots");
+        MenuItem mshowPeople = new MenuItem("Show All People");
+
         // add menu items to menu
-        routeMenu.getItems().add(mRoute1);
-        routeMenu.getItems().add(mRoute2);
+        peopleMenu.getItems().add(mShowPass);
+        peopleMenu.getItems().add(mAddPass);
+        peopleMenu.getItems().add(mShowPilot);
+        peopleMenu.getItems().add(mAddPilot);
+        peopleMenu.getItems().add(mshowPeople);
+
+        // Set events for menu items
+        mAddPass.setOnAction(actionEvent -> addPassengerInfo());
+        mShowPass.setOnAction(actionEvent -> showPassengerInfo());
+        mAddPilot.setOnAction(actionEvent -> addPilotInfo());
+        mShowPilot.setOnAction(actionEvent -> showPilotInfo());
+        mshowPeople.setOnAction(actionEvent -> showPassengerInfo()); // todo showPeopleInfo());
+        //endregion
+
+
+        //region Routes & legs Menu Section
+        //create menu item for Flight
+        MenuItem mShowRoutes = new MenuItem("Show Routes");
+        MenuItem mAddRoutes = new MenuItem("Add Routes");
+        MenuItem mShowLegs = new MenuItem("Show Legs");
+        MenuItem mAddLegs = new MenuItem("Add Legs");
+
+        // add menu items to menu
+        routeMenu.getItems().add(mShowRoutes);
+        routeMenu.getItems().add(mAddRoutes);
+        routeMenu.getItems().add(mShowLegs);
+        routeMenu.getItems().add(mAddLegs);
+
+        // Set events for menu items
+        mAddRoutes.setOnAction(actionEvent -> addRouteInfo());
+        mShowRoutes.setOnAction(actionEvent -> showRouteInfo());
+        mAddLegs.setOnAction(actionEvent -> addLegInfo());
+        mShowLegs.setOnAction(actionEvent -> showLegInfo());
+        //endregion
+
 
 
         // add menu to menubar
@@ -170,12 +236,10 @@ public class AmsGUI extends Application {
 
        airportMenu.setOnAction(event -> showAirportScene());
 
-       mPeople1.setOnAction(actionEvent -> showPilotScene());
-       mPeople2.setOnAction(actionEvent -> showPassengerScene());
 
 
-       mAircraft1.setOnAction(actionEvent -> showJetScene());
-       mAircraft2.setOnAction(actionEvent -> showPropScene());
+
+
 
         return  mb;
 
@@ -334,12 +398,12 @@ public class AmsGUI extends Application {
         vbox.setSpacing(10);
         Button add = new Button("Add Flight");
         Button show = new Button("Show Flights");
-        add.setOnAction(event -> addflightInfo());
+        add.setOnAction(event -> addFlightInfo());
         show.setOnAction(event -> showFlightInfo());
         vbox.getChildren().addAll(add,show);
         creatShowScreen(vbox);
     }
-    private void addflightInfo() {
+    private void addFlightInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
@@ -557,15 +621,16 @@ public class AmsGUI extends Application {
         vbox.setSpacing(10);
         TextField name = new TextField();
         name.setPromptText("Enter route name: ");
-        TextField departure = new TextField();
-        departure.setPromptText("Enter departure airport name: ");
+        TextField departsFrom = new TextField();
+        departsFrom.setPromptText("Enter departure airport name: ");
         TextField hop = new TextField();
         hop.setPromptText("Enter first hop: ");
         Button addRoute = new Button("Add Route");
         Button backButton = new Button("Back to showRouteScene scene");
-        //addRoute.setOnAction(event -> ams.createRoute(new Route(name.getText()),departure.getText(),hop.getText()));
+        Airport a = ams.getAirportFromAMS(departsFrom.getText());
+        addRoute.setOnAction(event -> ams.createRoute(new Route(name.getText(),a), departsFrom.getText(), hop.getText()));
         backButton.setOnAction(event -> showRouteScene());
-        vbox.getChildren().addAll(name,departure,hop,addRoute,backButton);
+        vbox.getChildren().addAll(name,departsFrom,hop,addRoute,backButton);
         creatShowScreen(vbox);
     }
     //endregion
@@ -606,7 +671,9 @@ public class AmsGUI extends Application {
         arrivesAt.setPromptText("Enter arrival airport name: ");
         Button addLeg = new Button("Add Leg");
         Button backButton = new Button("Back to showLegScene scene");
-       // addLeg.setOnAction(event -> ams.createLeg(departsFrom.getTet(),arrivesAt.getText(),new Leg()))
+        Airport oDepartsFrom = ams.getAirportFromAMS(departsFrom.getText());
+        Airport oArrivesAt = ams.getAirportFromAMS(arrivesAt.getText());
+        addLeg.setOnAction(event -> ams.createLeg(departsFrom.getText(),arrivesAt.getText(),new Leg(oDepartsFrom ,distance.getText() , oArrivesAt)));
         backButton.setOnAction(event -> showLegScene());
        vbox.getChildren().addAll(departsFrom,distance,arrivesAt,addLeg,backButton);
         creatShowScreen(vbox);

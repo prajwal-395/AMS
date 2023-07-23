@@ -384,8 +384,12 @@ public class AmsGUI extends Application {
         location.setPromptText("Enter location: ");
         Button addPilot = new Button("Add Pilot");
         Button backButton = new Button("Back to Pilot scene");
-        Pilot p = new Pilot(identifier.getText(),fName.getText(),lName.getText(),taxID.getText(),Integer.parseInt(experience.getText()),location.getText());
-        addPilot.setOnAction(event -> ams.createPilot(p,location.getText()));
+        //Pilot p = new Pilot(identifier.getText(),fName.getText(),lName.getText(),taxID.getText(),Integer.parseInt(experience.getText()),location.getText());
+        //addPilot.setOnAction(event -> ams.createPilot(p,location.getText()));
+        addPilot.setOnAction(event -> ams.createPilot(new Pilot(identifier.getText(),fName.getText(),lName.getText(),
+                                                        taxID.getText(),Integer.parseInt(experience.getText()),
+                                                        location.getText()),location.getText()));
+
         backButton.setOnAction(event -> showPilotScene());
         vbox.getChildren().addAll(identifier,fName,lName,taxID,experience,location,addPilot,backButton);
         creatShowScreen(vbox);
@@ -486,15 +490,33 @@ public class AmsGUI extends Application {
         nextTime.setPromptText("Enter next_status_change: ");
         TextField tailNum = new TextField();
         tailNum.setPromptText("Enter aircraft tail number: ");
+
         Button addFlight = new Button("Add Flight");
         Button backButton = new Button("Back to Flight scene");
-        Airline airline = ams.getAirlineFromAMS(airlineName.getText());
-        addFlight.setOnAction(Event -> ams.createFlight(airlineName.getText(),new Flight(airline, flightNum.getText(), Integer.parseInt(cost.getText()),Integer.parseInt(progress.getText()),routeName.getText(),LocalTime.parse(nextTime.getText()),tailNum.getText())));
+
+
+        addFlight.setOnAction(Event -> createFlight(airlineName.getText(),flightNum.getText(),
+                                                    Integer.parseInt(cost.getText()),Integer.parseInt(progress.getText()),
+                                                    routeName.getText(),LocalTime.parse(nextTime.getText()),
+                                                    tailNum.getText()));
+
         backButton.setOnAction(event -> showFlightScene());
         vbox.getChildren().addAll(airlineName,flightNum,cost,progress,routeName,nextTime,tailNum,addFlight,backButton);
         creatShowScreen(vbox);
     }
+
+    private void createFlight(String airlineName, String flightNum, Integer cost, Integer progress, String routeName, LocalTime nextTime, String tailNum){
+
+        Airline airline = ams.getAirlineFromAMS(airlineName);
+        Route route = ams.getRouteFromAMS(routeName);
+        Airplane supportingAirPlane = ams.getAirplaneFromAMS(tailNum);
+
+        Flight flight = new Flight(airline, flightNum,cost,progress, route,nextTime,supportingAirPlane);
+        ams.createFlight(airlineName,flight);
+    }
+
     private void showFlightInfo(){
+
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
@@ -614,7 +636,7 @@ public class AmsGUI extends Application {
         Button addJet = new Button("Add Prop");
         Button backButton = new Button("Back to Prop scene");
         addJet.setOnAction(event -> ams.createProp(new Propeller(tailNum.getText(),Integer.parseInt(seatCap.getText()),Double.parseDouble(speed.getText()),Integer.parseInt(engineNum.getText()),Boolean.parseBoolean(landingSkids.getValue()))));
-        backButton.setOnAction(event -> showJetScene());
+        backButton.setOnAction(event -> showPropInfo());
         vbox.getChildren().addAll(tailNum,seatCap,speed,engineNum,skids, landingSkids,addJet,backButton);
         creatShowScreen(vbox);
     }
@@ -659,7 +681,7 @@ public class AmsGUI extends Application {
         Button backButton = new Button("Back to showLegScene scene");
         Airport oDepartsFrom = ams.getAirportFromAMS(departsFrom.getText());
         Airport oArrivesAt = ams.getAirportFromAMS(arrivesAt.getText());
-        addLeg.setOnAction(event -> ams.createLeg(departsFrom.getText(),arrivesAt.getText(),new Leg(oDepartsFrom,distance.getText() , oArrivesAt)));
+        addLeg.setOnAction(event -> ams.createLeg(departsFrom.getText(),distance.getText(), arrivesAt.getText()));
         backButton.setOnAction(event -> showLegScene());
         vbox.getChildren().addAll(departsFrom,distance,arrivesAt,addLeg,backButton);
         creatShowScreen(vbox);

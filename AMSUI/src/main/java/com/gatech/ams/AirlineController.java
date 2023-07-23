@@ -214,7 +214,8 @@ public class AirlineController {
 
         sb.append("flight_landing,Ryan_Air,ry_19\n");
         sb.append("passengers_disembark,Ryan_Air,ry_19\n");
-        sb.append("retire_flight,Ryan_Air,ry_19\n");
+
+        //sb.append("retire_flight,Ryan_Air,ry_19\n");
         sb.append("passengers_board,British_Airways,ba_17\n");
         sb.append("flight_takeoff,British_Airways,ba_17\n");
         sb.append("flight_landing,British_Airways,ba_17\n");
@@ -238,27 +239,29 @@ public class AirlineController {
         sb.append("passengers_board,Delta,dl_10\n");
         sb.append("flight_takeoff,Delta,dl_10\n");
         sb.append("flight_landing,Delta,dl_33\n");
-        sb.append("passengers_disembark,Delta,dl_33\n");
-        sb.append("passengers_board,British_Airways,ba_17\n");
-        sb.append("flight_takeoff,British_Airways,ba_17\n");
-        sb.append("flight_landing,Delta,dl_10\n");
-        sb.append("passengers_disembark,Delta,dl_10\n");
-        sb.append("retire_flight,Delta,dl_10\n");
-        sb.append("passengers_board,Delta,dl_33\n");
-        sb.append("flight_takeoff,Delta,dl_33\n");
-        sb.append("flight_landing,British_Airways,ba_17\n");
-        sb.append("passengers_disembark,British_Airways,ba_17\n");
-        sb.append("retire_flight,British_Airways,ba_17\n");
-        sb.append("flight_landing,Delta,dl_33\n");
-        sb.append("passengers_disembark,Delta,dl_33\n");
-        sb.append("retire_flight,Delta,dl_33\n");
+
+//        sb.append("passengers_disembark,Delta,dl_33\n");
+//        sb.append("passengers_board,British_Airways,ba_17\n");
+//        sb.append("flight_takeoff,British_Airways,ba_17\n");
+//        sb.append("flight_landing,Delta,dl_10\n");
+//        sb.append("passengers_disembark,Delta,dl_10\n");
+//        //sb.append("retire_flight,Delta,dl_10\n");
+//        sb.append("passengers_board,Delta,dl_33\n");
+//        sb.append("flight_takeoff,Delta,dl_33\n");
+//        sb.append("flight_landing,British_Airways,ba_17\n");
+
+        //sb.append("passengers_disembark,British_Airways,ba_17\n");
+        //sb.append("retire_flight,British_Airways,ba_17\n");
+        //sb.append("flight_landing,Delta,dl_33\n");
+        //sb.append("passengers_disembark,Delta,dl_33\n");
+        //sb.append("retire_flight,Delta,dl_33\n");
 
 // show final simulation state
-        sb.append("show_airlines\n");
-        sb.append("show_airports:\n");
-        sb.append("show_people\n");
-        sb.append("show_airplanes\n");
-        sb.append("show_routes\n");
+//        sb.append("show_airlines\n");
+//        sb.append("show_airports:\n");
+//        sb.append("show_people\n");
+//        sb.append("show_airplanes\n");
+//        sb.append("show_routes\n");
 
 
         String[] lines = sb.toString().split("\n");
@@ -355,10 +358,10 @@ public class AirlineController {
                 Airport departsFrom = system.getAirportFromAMS(tokens[1]);
                 Airport arrivesAt = system.getAirportFromAMS(tokens[3]);
                 if(departsFrom ==null || arrivesAt ==null){
-                    System.out.println("problem in crerating leg: departing airpoort is : " + departsFrom + " arrival airport: " + arrivesAt);
+                    System.out.println("problem in creating leg: departing airpoort is : " + departsFrom + " arrival airport: " + arrivesAt);
                 }
                 else{
-                    system.createLeg(tokens[1], tokens[3], new Leg(departsFrom, tokens[2], arrivesAt));
+                    system.createLeg(tokens[1], tokens[2],tokens[3]);
                 }
 
             } else if (tokens[0].equals("create_route")) {

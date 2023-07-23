@@ -133,12 +133,27 @@ public class Airplane {
             Airplane plane = flight.getSupportingAirplane();
             List<Leg> flightLegs = flight.getRoute().getLegList();
             for (Passenger passenger : plane.getPassengers()) {
-                Airport nextPassangerAirport = passenger.getVacationSpots().get(passenger.getCurrentVacationSpot());
-                if (flightLegs.get(flight.getProgessState() - 1).getArrivalAirport() == nextPassangerAirport) {
+                int currentVacationSpots = passenger.getCurrentVacationSpot();
+
+                if(currentVacationSpots < 0) currentVacationSpots = 0;
+
+                if(passenger.getVacationSpots().size() < currentVacationSpots){
+                    System.out.println("Seems Passenger is already disembarked");
+                    continue;
+                }
+
+                Airport nextPassangerAirport = passenger.getVacationSpots().get(currentVacationSpots);
+                int flightProgress = flight.getProgessState();
+                if(flightProgress < 1) {
+                    System.out.println("problem with fligh progress");
+                    flightProgress = 1;
+                }
+                if (flightLegs.get(flightProgress - 1).getArrivalAirport() == nextPassangerAirport) {
                     passengerDisembarkList.add(passenger);
                     passenger.setCurrentVacationSpot(passenger.getCurrentVacationSpot() + 1);
                     System.out.println("passengerDisEmbarking:" + passenger.getIdentifier());
                 }
+
             }
             plane.getPassengers().removeAll(passengerDisembarkList);
         }

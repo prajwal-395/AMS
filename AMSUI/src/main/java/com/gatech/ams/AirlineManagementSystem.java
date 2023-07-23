@@ -82,10 +82,10 @@ public class AirlineManagementSystem {
         System.out.print("prop created successfully!");
     }
 
-    public void createLeg(String departsFrom, String arrivesAt, Leg leg) {
-        legList.add(leg);
-        System.out.print("leg created successfully!");
-    }
+//    public void createLeg(String departsFrom, String arrivesAt, Leg leg) {
+//        legList.add(leg);
+//        System.out.print("leg created successfully!");
+//    }
 
     public void createLeg(String departsFromIATA,String distance, String arrivesAtIATA) {
         Airport departsAirport = this.getAirportFromAMS(departsFromIATA);
@@ -400,9 +400,12 @@ public class AirlineManagementSystem {
 
         StringBuffer sb = new StringBuffer();
 
-//        if(flightList !=null && !flightList.isEmpty()) {
-//            System.out.println(flightList.get(0));
-//        }
+        if(flightList !=null && !flightList.isEmpty()) {
+            System.out.println(flightList.get(0));
+        }
+        else{
+            System.out.println("flightList is empty");
+        }
 
         for (Flight flight : flightList) {
             sb.append(flight);

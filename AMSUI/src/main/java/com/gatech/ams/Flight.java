@@ -16,18 +16,18 @@ public class Flight {
     private Airplane supportingAirplane;
     private Airline owningAirline;
 
-    public Flight(Airline owningAirline, String flightID, int cost, int progressState, String routeName, LocalTime next_time, String supportingAirplane) {
-        AirlineManagementSystem a = new AirlineManagementSystem();
-        
-        this.owningAirline = owningAirline;
-        this.flightID = flightID;
-        this.cost = cost;
-        this.progressState = progressState;
-        //TODO getter for route --> do we create this list in AC or in routes
-        this.route = a.getRouteFromAMS(routeName);
-        this.next_time = next_time;
-        this.supportingAirplane = a.getAirplaneFromAMS(supportingAirplane);
-    }
+//    public Flight(Airline owningAirline, String flightID, int cost, int progressState, String routeName, LocalTime next_time, String supportingAirplane) {
+//        AirlineManagementSystem a = new AirlineManagementSystem();
+//
+//        this.owningAirline = owningAirline;
+//        this.flightID = flightID;
+//        this.cost = cost;
+//        this.progressState = progressState;
+//        //TODO getter for route --> do we create this list in AC or in routes
+//        this.route = a.getRouteFromAMS(routeName);
+//        this.next_time = next_time;
+//        this.supportingAirplane = a.getAirplaneFromAMS(supportingAirplane);
+//    }
 
     public Flight(Airline owningAirline, String flightID, int cost, int progressState, Route route, LocalTime next_time, Airplane supportingAirplane) {
 

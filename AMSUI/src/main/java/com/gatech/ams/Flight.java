@@ -29,6 +29,18 @@ public class Flight {
         this.supportingAirplane = a.getAirplaneFromAMS(supportingAirplane);
     }
 
+    public Flight(Airline owningAirline, String flightID, int cost, int progressState, Route route, LocalTime next_time, Airplane supportingAirplane) {
+
+        this.owningAirline = owningAirline;
+        this.flightID = flightID;
+        this.cost = cost;
+        this.progressState = progressState;
+        //TODO getter for route --> do we create this list in AC or in routes
+        this.route = route;
+        this.next_time = next_time;
+        this.supportingAirplane = supportingAirplane;
+    }
+
     public Airline getOwningAirline() {
         return this.owningAirline;
     }
@@ -104,6 +116,13 @@ public class Flight {
 
     @Override
     public String toString() {
-        return super.toString();
+
+        String supprotingAircraft =null;
+        if(this.supportingAirplane !=null){
+            supprotingAircraft = this.supportingAirplane.getTailNumber();
+        }
+        return "airline: " + this.owningAirline.getAirlineName() + ", flight_id: " + this.flightID + ", cost: " + this.cost
+                + ", route_progress: " + this.getProgessState() + ", route_name: " + this.getRoute().getRouteName()
+                + ", next_status_change: " + this.getNextTime() + ", supporting_aircraft: " + supprotingAircraft + System.lineSeparator();
     }
 }

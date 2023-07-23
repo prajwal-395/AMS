@@ -46,6 +46,8 @@ public class AirlineManagementSystem {
         Airline airline = getAirlineFromAMS(airlineName);
         if (!(flightList.contains(f))) {
             flightList.add(f);
+
+            System.out.println("flight added in  flightList!");
             airline.getFlightOfAirline().add(f);
         }
         System.out.println("flight created successfully!");
@@ -81,6 +83,19 @@ public class AirlineManagementSystem {
     }
 
     public void createLeg(String departsFrom, String arrivesAt, Leg leg) {
+        legList.add(leg);
+        System.out.print("leg created successfully!");
+    }
+
+    public void createLeg(String departsFromIATA,String distance, String arrivesAtIATA) {
+        Airport departsAirport = this.getAirportFromAMS(departsFromIATA);
+        Airport arrivalAirport = this.getAirportFromAMS(arrivesAtIATA);
+
+        if(departsAirport ==null || arrivalAirport == null){
+            System.out.print("Please check the IATA code for the Departure and Arrival Airport!");
+        }
+
+        Leg leg = new Leg(departsAirport,distance, arrivalAirport);
         legList.add(leg);
         System.out.print("leg created successfully!");
     }
@@ -177,7 +192,7 @@ public class AirlineManagementSystem {
                 }
             }
         }
-        System.out.println("passengers successfully boarded!");
+        System.out.println("passengers successfully boarded!" + airlineName + " flightNumber: " + flightNumber);
     }
 
     public void passengersDisembark(String airlineName, String flightNumber) {
@@ -192,7 +207,7 @@ public class AirlineManagementSystem {
                 }
             }
         }
-        System.out.println("passengers successfully disembarked!");
+        System.out.println("passengers successfully disembarked!" + "airline: " + airlineName + " flightNumber: " + flightNumber);
     }
 
     public void retireFlight(String airlineName, String flightNumber) {
@@ -381,6 +396,21 @@ public class AirlineManagementSystem {
         return sb.toString();
     }
 
+    public String showFlights() {
+
+        StringBuffer sb = new StringBuffer();
+
+//        if(flightList !=null && !flightList.isEmpty()) {
+//            System.out.println(flightList.get(0));
+//        }
+
+        for (Flight flight : flightList) {
+            sb.append(flight);
+        }
+        System.out.println(sb.toString());
+
+        return sb.toString();
+    }
 
     public Airline getAirlineFromAMS(String airlineName) {
         for (Airline a: airlineList) {

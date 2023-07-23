@@ -82,6 +82,10 @@ public class Airline {
         // set the inAir boolean in plane to false
         if(plane !=null) {
             plane.setInAir(false);
+        }else {
+            //throw exception
+            System.out.println("flight doesn't have suppoting Airplane");
+            return;
         }
         // add experience to pilots and frequent flier miles to passangers
         // update the locations of all the people on the plane

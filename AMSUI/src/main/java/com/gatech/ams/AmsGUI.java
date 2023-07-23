@@ -499,7 +499,7 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Label l = new Label("FlightView");
-        String s =  ""; //ams.showFlight(); Todo
+        String s =  ams.showFlights();
         l.setText(s);
         Button backButton = new Button("Back to Flight scene");
         backButton.setOnAction(event -> showFlightScene());
@@ -659,7 +659,7 @@ public class AmsGUI extends Application {
         Button backButton = new Button("Back to showLegScene scene");
         Airport oDepartsFrom = ams.getAirportFromAMS(departsFrom.getText());
         Airport oArrivesAt = ams.getAirportFromAMS(arrivesAt.getText());
-        addLeg.setOnAction(event -> ams.createLeg(departsFrom.getText(),arrivesAt.getText(),new Leg(oDepartsFrom ,distance.getText() , oArrivesAt)));
+        addLeg.setOnAction(event -> ams.createLeg(departsFrom.getText(),arrivesAt.getText(),new Leg(oDepartsFrom,distance.getText() , oArrivesAt)));
         backButton.setOnAction(event -> showLegScene());
         vbox.getChildren().addAll(departsFrom,distance,arrivesAt,addLeg,backButton);
         creatShowScreen(vbox);

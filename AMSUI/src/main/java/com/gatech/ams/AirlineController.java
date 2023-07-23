@@ -169,6 +169,8 @@ public class AirlineController {
         sb.append("create_flight,Delta,dl_33,100,0,route_three,08:15,n330pc\n");
         sb.append("create_flight,Ryan_Air,ry_19,100,2,route_one,08:30,p506bp\n");
 
+        sb.append("show_flights\n");
+
 // check assign pilots
         sb.append("assign_pilot,Delta,dl_10,p2\n");
         sb.append("assign_pilot,British_Airways,ba_17,p5\n");
@@ -196,21 +198,27 @@ public class AirlineController {
         sb.append("passengers_board,Ryan_Air,ry_19\n");
         sb.append("flight_takeoff,Ryan_Air,ry_19\n");
         sb.append("flight_landing,Delta,dl_10\n");
+
+
         sb.append("passengers_disembark,Delta,dl_10\n");
         sb.append("passengers_board,Delta,dl_10\n");
         sb.append("flight_takeoff,Delta,dl_10\n");
         sb.append("flight_landing,Ryan_Air,ry_19\n");
+
         sb.append("passengers_disembark,Ryan_Air,ry_19\n");
         sb.append("passengers_board,Ryan_Air,ry_19\n");
         sb.append("flight_takeoff,Ryan_Air,ry_19\n");
+
         sb.append("flight_landing,British_Airways,ba_17\n");
         sb.append("passengers_disembark,British_Airways,ba_17\n");
+
         sb.append("flight_landing,Ryan_Air,ry_19\n");
         sb.append("passengers_disembark,Ryan_Air,ry_19\n");
         sb.append("retire_flight,Ryan_Air,ry_19\n");
         sb.append("passengers_board,British_Airways,ba_17\n");
         sb.append("flight_takeoff,British_Airways,ba_17\n");
         sb.append("flight_landing,British_Airways,ba_17\n");
+
         sb.append("passengers_disembark,British_Airways,ba_17\n");
         sb.append("flight_landing,Delta,dl_10\n");
         sb.append("passengers_disembark,Delta,dl_10\n");
@@ -219,6 +227,7 @@ public class AirlineController {
         sb.append("passengers_board,Delta,dl_10\n");
         sb.append("flight_takeoff,Delta,dl_10\n");
         sb.append("flight_landing,Delta,dl_33\n");
+
         sb.append("passengers_disembark,Delta,dl_33\n");
         sb.append("flight_landing,Delta,dl_10\n");
         sb.append("passengers_disembark,Delta,dl_10\n");
@@ -259,8 +268,13 @@ public class AirlineController {
             tokens = wholeInputLine.split(DELIMITER);
             System.out.println(">> " + wholeInputLine);
 
-            if (cmdMethod(commandLineInput, DELIMITER,tokens, wholeInputLine))
+            if (cmdMethod(commandLineInput, DELIMITER,tokens, wholeInputLine)) {
                 break;
+            }
+            else{
+                System.out.println("Failed: for command ");
+                System.out.println(wholeInputLine);
+            }
 
         }
         System.out.println("simulation terminated");
@@ -291,12 +305,21 @@ public class AirlineController {
 
 
             } else if (tokens[0].equals("create_flight")) {
-                System.out.print("airline: " + tokens[1] + ", number: " + tokens[2] + ", cost: " + tokens[3]);
+                System.out.print("airline: " + tokens[1] + ", flight_id: " + tokens[2] + ", cost: " + tokens[3]);
                 System.out.print(", route_progress: " + tokens[4] + ", route_name: " + tokens[5]);
                 System.out.println(", next_status_change: " + tokens[6] + ", supporting_aircraft: " + tokens[7]);
 
                 Airline airline = system.getAirlineFromAMS(tokens[1]);
-                system.createFlight(tokens[1], new Flight(airline, tokens[2], Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4]), tokens[5], LocalTime.parse(tokens[6]), tokens[7]));
+                Route route = system.getRouteFromAMS(tokens[5]);
+                Airplane SupportingAirplane = system.getAirplaneFromAMS(tokens[7]);
+
+                Flight flight  = new Flight(airline, tokens[2], Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4]), route,
+                        LocalTime.parse(tokens[6]), SupportingAirplane);
+
+                if(flight ==null){
+                    System.out.println("flight constructor failed");
+                }
+                system.createFlight(tokens[1], flight);
 
             } else if (tokens[0].equals("create_passenger")) {
                 System.out.print("identifier: " + tokens[1] + ", first_name: " + tokens[2] + ", last_name: " + tokens[3]);
@@ -422,7 +445,17 @@ public class AirlineController {
 
                 System.out.println(system.showRoutes());
 
-            } else if (tokens[0].equals("stop")) {
+            } else if (tokens[0].equals("show_flights")) {
+                System.out.println("DIAGNOSTIC ONLY | no parameters");
+
+                System.out.println(system.showFlights());
+
+            } else if (tokens[0].equals("show_assignedPilots")) {
+                System.out.println("DIAGNOSTIC ONLY | no parameters");
+
+                //System.out.println(system.showAssignedPilots());
+
+            }else if (tokens[0].equals("stop")) {
                 System.out.println("stop acknowledged");
                 return true;
 

@@ -91,7 +91,9 @@ public class Airplane {
                 if (person instanceof Passenger) {
                     Passenger passenger = (Passenger) person;
                     //TODO should the vacation spot be +1?
-                    if (passenger.getVacationSpots().get(passenger.getCurrentVacationSpot() + 1).equals(legList.get(flight.getProgessState() + 1).getArrivalAirport())) {
+                    //if (passenger.getVacationSpots().get(passenger.getCurrentVacationSpot() + 1).equals(legList.get(flight.getProgessState() + 1).getArrivalAirport())) {
+                    if (passenger.getVacationSpots().contains(matchLeg.getArrivalAirport())) {
+
                         //TODO f the passenger has the funds to cover the flight cost, and the airplane
                         //supporting that flight has the seating capacity, then your system must track
                         //the passenger boarding the flight, and later getting off the flight at their
@@ -104,6 +106,7 @@ public class Airplane {
                             airline.setAirlineRevenue(flight.getCost());
                             if (passengers.size() <= seatingCapacity) {
                                 passengers.add(passenger);
+                                System.out.println("passenger Boaridng:" + passenger.getIdentifier());
                             } else {
                                 /* remove all passangers from that flight
                                 this is kind of a crude method but because we don't have
@@ -123,15 +126,23 @@ public class Airplane {
     }
 
     public void passengersDisembark(Airline airline, Flight flight) {
+
+        List<Passenger> passengerDisembarkList = new ArrayList<>();
+
         if (!(inAir)) {
             Airplane plane = flight.getSupportingAirplane();
+            List<Leg> flightLegs = flight.getRoute().getLegList();
             for (Passenger passenger : plane.getPassengers()) {
-                if (flight.getRoute().getLegList().get(flight.getProgessState() - 1).getArrivalAirport() == passenger.getVacationSpots().get(passenger.getCurrentVacationSpot())) {
-                    plane.getPassengers().remove(passenger);
+                Airport nextPassangerAirport = passenger.getVacationSpots().get(passenger.getCurrentVacationSpot());
+                if (flightLegs.get(flight.getProgessState() - 1).getArrivalAirport() == nextPassangerAirport) {
+                    passengerDisembarkList.add(passenger);
                     passenger.setCurrentVacationSpot(passenger.getCurrentVacationSpot() + 1);
+                    System.out.println("passengerDisEmbarking:" + passenger.getIdentifier());
                 }
             }
+            plane.getPassengers().removeAll(passengerDisembarkList);
         }
+
     }
 
     @Override

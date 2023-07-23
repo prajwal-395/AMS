@@ -638,7 +638,7 @@ public class AmsGUI extends Application {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         Label l = new Label("Leg View");
-        String s = ""; //
+        String s = ams.showLegs(); //
         l.setText(s);
         Button backButton = new Button("Back to Leg scene");
         backButton.setOnAction(event -> showLegScene());

@@ -269,18 +269,16 @@ public class AirlineManagementSystem {
             //System.out.println("airport " + airport.getIATA() + ": " + airport.getAirportName() + " is located in " + airport.getCity() + ", "+ airport.getState() + " (" + airport.getCountry() + ")");
             ////System.out.println("  legs to other airports");
 
-            sb.append(airport);
-            sb.append("  legs to other airports");
+            sb.append(airport + System.lineSeparator());
+            sb.append("legs to other airports\n");
 
             for (Leg leg : legList) {
                 if (leg.getDepartAirport() == airport) {
-
                     //System.out.print(" | " + leg.getDistance() + " --> " + leg.getArrivalAirport().getIATA());
                     sb.append(leg);
                 }
             }
-            sb.append("\n");
-            sb.append("    people waiting at this airport");
+            sb.append("people waiting at this airport");
             sb.append("\n");
             //System.out.println("\n");
             //System.out.println("    people waiting at this airport");
@@ -291,6 +289,7 @@ public class AirlineManagementSystem {
                 //System.out.print(" | " + person.getIdentifier());
                 sb.append(" | " + person.getIdentifier());
             }
+            sb.append("\n");
             sb.append("\n");
         }
 
@@ -363,6 +362,18 @@ public class AirlineManagementSystem {
                 sb.append(" --> " + leg.getArrivalAirport());
             }
             sb.append("\n");
+        }
+        System.out.println(sb.toString());
+
+        return sb.toString();
+    }
+
+    public String showLegs() {
+
+        StringBuffer sb = new StringBuffer();
+
+        for (Leg leg : legList) {
+            sb.append(leg);
         }
         System.out.println(sb.toString());
 

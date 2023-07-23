@@ -36,7 +36,8 @@ public class Leg {
 	@Override
 	public String toString() {
 
-		String str = " | " + this.getDistance() + " --> " + this.getArrivalAirport().getIATA();
-		return str;
+		return  "Leg: " + this.getDepartAirport().getIATA()  + "-->" + this.getDistance() + " --> "
+				+ this.getArrivalAirport().getIATA() + System.lineSeparator();
+
 	}
 }

@@ -359,11 +359,11 @@ public class AmsGUI extends Application {
         tailNum.setPromptText("Enter aircraft tail number: ");
         Button addFlight = new Button("Add Flight");
         Button backButton = new Button("Back to Flight scene");
-        //addFlight.setOnAction(Event -> ams.createFlight(new Flight(flightNum.getText(),airlineName.getText(),)));
-      //  system.createFlight(airlineName.getText(), new Flight(airline, tokens[2], Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4]), tokens[5], LocalTime.parse(tokens[6]), tokens[7]));
-
+        Airline airline = ams.getAirlineFromAMS(airlineName.getText());
+        Flight f = new Flight(airline, flightNum.getText(), Integer.parseInt(cost.getText()),Integer.parseInt(progress.getText()),routeName.getText(),LocalTime.parse(nextTime.getText()),tailNum.getText());
+        addFlight.setOnAction(Event -> ams.createFlight(airlineName.getText(),f));
         backButton.setOnAction(event -> showFlightScene());
-       // vbox.getChildren().addAll(airlineName.getText(),flightNum,cost,progress,routeName,nextTime,tailNum,addFlight,backButton);
+       vbox.getChildren().addAll(airlineName,flightNum,cost,progress,routeName,nextTime,tailNum,addFlight,backButton);
         creatShowScreen(vbox);
     }
     private void showFlightInfo(){

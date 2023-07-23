@@ -360,6 +360,7 @@ public class AirlineManagementSystem {
             sb.append("route " + route.getRouteName() + ": " + route.getDepartsFrom());
             for (Leg leg : route.getLegList()) {
                 sb.append(" --> " + leg.getArrivalAirport());
+                sb.append("\n");
             }
             sb.append("\n");
         }

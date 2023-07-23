@@ -57,7 +57,7 @@ public class AmsGUI extends Application {
         Scene homeScene = new Scene(borderPane, x, y);
 
 //        Button airlineButton = new Button("Airlines");
-//        Button airportButton = new Button("Airports");
+        Button airportButton = new Button("Airports");
 //        Button flightButton = new Button("Flights");
 //        Button passengerButton = new Button("Passengers");
 //        Button pilotButton = new Button("Pilots");
@@ -67,7 +67,7 @@ public class AmsGUI extends Application {
 //        Button legButton = new Button("Legs");
 
 //        airlineButton.setOnAction(event -> showAirlineScene());
-//        airportButton.setOnAction(event -> showAirportScene());
+        airportButton.setOnAction(event -> ams.showAirports());
 //        flightButton.setOnAction(event -> showFlightScene());
 //        passengerButton.setOnAction(event -> showPassengerScene());
 //        pilotButton.setOnAction(event -> showPilotScene());
@@ -380,10 +380,8 @@ public class AmsGUI extends Application {
     }
     //endregion
 
-
-    //pilot
+    //region Pilot Section
     private void showPilotScene() {
-
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
@@ -396,49 +394,48 @@ public class AmsGUI extends Application {
         vbox.getChildren().addAll(add,delete,show);
         creatShowScreen(vbox);
     }
-
     private void showPilotInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
-
-       // vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
+        Label l = new Label("PilotView");
+        String s = ""; //ams.showPilotDetails(); Todo
+        l.setText(s);
+        Button backButton = new Button("Back to Pilot scene");
+        backButton.setOnAction(event -> showPilotScene());
+        vbox.getChildren().addAll(l,backButton);
         creatShowScreen(vbox);
     }
-
     private void addPilotInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
-
-        Button backButton = new Button("Back to Pilot scene");
-        backButton.setOnAction(event -> showPilotScene());
-
         TextField identifier = new TextField();
-        identifier.setPromptText("Enter personID: ");
-
+        identifier.setPromptText("Enter pilotID: ");
         TextField fName = new TextField();
         fName.setPromptText("Enter first name: ");
-
         TextField lName = new TextField();
         lName.setPromptText("Enter last name: ");
-
         TextField taxID = new TextField();
         taxID.setPromptText("Enter taxID: ");
-
         TextField experience = new TextField();
         experience.setPromptText("Enter pilot experience: ");
-
         TextField location = new TextField();
         location.setPromptText("Enter location: ");
+        Button addPilot = new Button("Add Pilot");
+        Button backButton = new Button("Back to Pilot scene");
+        Pilot p = new Pilot(identifier.getText(),fName.getText(),lName.getText(),taxID.getText(),Integer.parseInt(experience.getText()),location.getText());
+        //addPilot.setOnAction(event -> ams.createPilot(p));
+        backButton.setOnAction(event -> showPilotScene());
 
-       // vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
+
+        // vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
         creatShowScreen(vbox);
+
     }
+    //endregion
 
-
-   
-    //Aircraft screen for Jet and Prop
+    //region Jet Section
     private void showJetScene() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
@@ -447,7 +444,7 @@ public class AmsGUI extends Application {
         Button delete = new Button("Remove Jet");
         Button show = new Button("Show Jets");
         add.setOnAction(event -> addJetInfo());
-        delete.setOnAction(event -> homeScreen());
+        delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showJetInfo());
         vbox.getChildren().addAll(add,delete,show);
         creatShowScreen(vbox);
@@ -462,26 +459,33 @@ public class AmsGUI extends Application {
         seatCap.setPromptText("Enter seating capacity: ");
         TextField speed = new TextField();
         speed.setPromptText("Enter speed: ");
-        TextField engines = new TextField();
-        engines.setPromptText("Enter number of engines: ");
+        TextField engineNum = new TextField();
+        engineNum.setPromptText("Enter number of engines: ");
         Button addJet = new Button("Add Jet");
-        Button backButton = new Button("Back to Airline scene");
-        //addJet.setOnAction(event -> ams.createJet(new Airline(name.getText(),Double.parseDouble(revenue.getText()))));
+        Button backButton = new Button("Back to Jet scene");
+        addJet.setOnAction(event -> ams.createJet(new Jet( tailNum.getText(),Integer.parseInt(seatCap.getText()),Double.parseDouble(speed.getText()),Integer.parseInt(engineNum.getText()))));
         backButton.setOnAction(event -> showJetScene());
-        vbox.getChildren().addAll(tailNum,seatCap,speed,engines, addJet,backButton);
+        vbox.getChildren().addAll(tailNum,seatCap,speed,engineNum,addJet,backButton);
         creatShowScreen(vbox);
-    }
 
+
+
+    }
     private void showJetInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
-
-       // vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
+        Label l = new Label("JetView");
+        String s = ""; // ams.showJetDetals(); Todo
+        l.setText(s);
+        Button backButton = new Button("Back to Jet scene");
+        backButton.setOnAction(event -> showJetScene());
+        vbox.getChildren().addAll(l,backButton);
         creatShowScreen(vbox);
     }
+    //endregion
 
-    
+    //region Prop Section
     private void showPropScene() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
@@ -489,57 +493,49 @@ public class AmsGUI extends Application {
         Button add = new Button("Add Prop");
         Button delete = new Button("Remove Prop");
         Button show = new Button("Show Props");
-
         add.setOnAction(event -> addPropInfo());
-        delete.setOnAction(event -> homeScreen());
+        delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showPropInfo());
-
-       // vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
+        vbox.getChildren().addAll(add,delete,show);
         creatShowScreen(vbox);
     }
-
     private void showPropInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
-
-     //   vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
+        Label l = new Label("Propellor View");
+        String s = ""; // ams.showPropDetals(); Todo
+        l.setText(s);
+        Button backButton = new Button("Back to Propellor scene");
+        backButton.setOnAction(event -> showPropScene());
+        vbox.getChildren().addAll(l,backButton);
         creatShowScreen(vbox);
     }
-
     private void addPropInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
-
-        Button backButton = new Button("Back to Prop scene");
-        backButton.setOnAction(event -> showPropScene());
-
         TextField tailNum = new TextField();
         tailNum.setPromptText("Enter tail number: ");
-
         TextField seatCap = new TextField();
         seatCap.setPromptText("Enter seating capacity: ");
-
         TextField speed = new TextField();
         speed.setPromptText("Enter speed: ");
-
-        TextField engines = new TextField();
-        engines.setPromptText("Enter number of engines: ");
-
+        TextField engineNum = new TextField();
+        engineNum.setPromptText("Enter number of engines: ");
         Label skids = new Label("Landing Skids: ");
-
         ComboBox<String> landingSkids = new ComboBox<String>();
         landingSkids.getItems().addAll("True", "False");
-
-
-       // vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
+        Button addJet = new Button("Add Prop");
+        Button backButton = new Button("Back to Prop scene");
+        addJet.setOnAction(event -> ams.createProp(new Propeller(tailNum.getText(),Integer.parseInt(seatCap.getText()),Double.parseDouble(speed.getText()),Integer.parseInt(engineNum.getText()),Boolean.parseBoolean(landingSkids.getValue()))));
+        backButton.setOnAction(event -> showJetScene());
+        vbox.getChildren().addAll(tailNum,seatCap,speed,engineNum,skids, landingSkids,addJet,backButton);
         creatShowScreen(vbox);
     }
+//endregion
 
-
-    
-    //route and leg
+    //region Route Section
     private void showRouteScene() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
@@ -547,47 +543,44 @@ public class AmsGUI extends Application {
         Button add = new Button("Add Route");
         Button delete = new Button("Remove Route");
         Button show = new Button("Show Routes");
-
         add.setOnAction(event -> addRouteInfo());
-        delete.setOnAction(event -> homeScreen());
+        delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showRouteInfo());
-
-       // vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
+        vbox.getChildren().addAll(add,delete,show);
         creatShowScreen(vbox);
     }
-
     private void showRouteInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
-
-       // vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
+        Label l = new Label("Routes View");
+        String s = ""; // ams.showRouteDetals(); Todo
+        l.setText(s);
+        Button backButton = new Button("Back to Routes scene");
+        backButton.setOnAction(event -> showRouteScene());
+        vbox.getChildren().addAll(l,backButton);
         creatShowScreen(vbox);
     }
-
     private void addRouteInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
-
-        Button backButton = new Button("Back to Route scene");
-        backButton.setOnAction(event -> showRouteScene());
-
         TextField name = new TextField();
         name.setPromptText("Enter route name: ");
-
         TextField departure = new TextField();
         departure.setPromptText("Enter departure airport name: ");
-
         TextField hop = new TextField();
         hop.setPromptText("Enter first hop: ");
-
-
-       // vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
+        Button addRoute = new Button("Add Route");
+        Button backButton = new Button("Back to showRouteScene scene");
+        //addJet.setOnAction(event -> ams.createRoute(new Route(name.getText()),departure.getText(),hop.getText()));
+        backButton.setOnAction(event -> showRouteScene());
+        vbox.getChildren().addAll(name,departure,hop,addRoute,backButton);
         creatShowScreen(vbox);
     }
-    
+    //endregion
 
+    //region leg Section
     private void showLegScene() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
@@ -595,43 +588,40 @@ public class AmsGUI extends Application {
         Button add = new Button("Add Leg");
         Button delete = new Button("Remove Leg");
         Button show = new Button("Show Legs");
-
         add.setOnAction(event -> addLegInfo());
-        delete.setOnAction(event -> homeScreen());
+        delete.setOnAction(event -> showHomeScreen());
         show.setOnAction(event -> showLegInfo());
-
-       // vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
+        vbox.getChildren().addAll(add,delete,show);
         creatShowScreen(vbox);
     }
-
     private void showLegInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
-
-       // vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
+        Label l = new Label("Leg View");
+        String s = ""; // ams.showLegDetals(); Todo
+        l.setText(s);
+        Button backButton = new Button("Back to Leg scene");
+        backButton.setOnAction(event -> showLegScene());
+        vbox.getChildren().addAll(l,backButton);
         creatShowScreen(vbox);
     }
     private void addLegInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
-
-        Button backButton = new Button("Back to Leg scene");
-        backButton.setOnAction(event -> showLegScene());
-
-        TextField departure = new TextField();
-        departure.setPromptText("Enter departure airport name: ");
-
+        TextField departsFrom = new TextField();
+        departsFrom.setPromptText("Enter departure airport name: ");
         TextField distance = new TextField();
         distance.setPromptText("Enter distance: ");
-
-        TextField arrival = new TextField();
-        arrival.setPromptText("Enter arrival airport name: ");
-
-
-       // vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
+        TextField arrivesAt = new TextField();
+        arrivesAt.setPromptText("Enter arrival airport name: ");
+        Button addLeg = new Button("Add Leg");
+        Button backButton = new Button("Back to showLegScene scene");
+       // addLeg.setOnAction(event -> ams.createLeg(departsFrom.getTet(),arrivesAt.getText(),new Leg()))
+        backButton.setOnAction(event -> showLegScene());
+       vbox.getChildren().addAll(departsFrom,distance,arrivesAt,addLeg,backButton);
         creatShowScreen(vbox);
     }
-
+//endregion
 }

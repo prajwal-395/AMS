@@ -9,6 +9,9 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.paint.Color;
 import javafx.scene.control.*;
 
 import java.io.IOException;
@@ -259,6 +262,10 @@ public class AmsGUI extends Application {
         vbox.setSpacing(10);
         Button add = new Button("Add Airline");
         Button show = new Button("Show Airlines");
+
+        add.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        show.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         add.setOnAction(event -> addAirlineInfo());
         show.setOnAction(event -> showAirlineInfo());
         vbox.getChildren().addAll(add,show);
@@ -267,17 +274,28 @@ public class AmsGUI extends Application {
     //add airline screen
     private void addAirlineInfo(){
         VBox vbox = new VBox();
-        vbox.setPadding(new Insets(10,10,10,10));
+        vbox.setPadding(new Insets(20,20,20,20));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("Create New Airline");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
+        Label lname = new Label("Airline Name:");
         TextField name = new TextField();
         name.setPromptText("Enter Airline Name: ");
+        Label lrevenue = new Label("Airline Revenue:");
         TextField revenue = new TextField();
         revenue.setPromptText("Enter Airline Revenue: ");
         Button addAirline = new Button("Add Airline");
-        Button backButton = new Button("Back to Airline scene");
+        Button backButton = new Button("Back to Airline Scene");
+
+        addAirline.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         addAirline.setOnAction(event -> ams.createAirline(new Airline(name.getText(),Double.parseDouble(revenue.getText()))));
         backButton.setOnAction(event -> showAirlineScene());
-        vbox.getChildren().addAll(name,revenue,addAirline,backButton);
+        vbox.getChildren().addAll(lscreen,lname,name,lrevenue,revenue,addAirline,backButton);
         creatShowScreen(vbox);
     }
     //show airlines 
@@ -285,12 +303,20 @@ public class AmsGUI extends Application {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("All Airlines Details");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
         Label l = new Label("AirlineView");
         String s = ams.showAirlines();
         l.setText(s);
-        Button backButton = new Button("Back to Airline scene");
+        Button backButton = new Button("Back to Airline Scene");
+
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         backButton.setOnAction(event -> showAirlineScene());
-        vbox.getChildren().addAll(l,backButton);
+        vbox.getChildren().addAll(lscreen,l,backButton);
         creatShowScreen(vbox);
     }
     //endregion
@@ -302,6 +328,10 @@ public class AmsGUI extends Application {
         vbox.setSpacing(10);
         Button add = new Button("Add Airport");
         Button show = new Button("Show Airports");
+
+        add.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        show.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         add.setOnAction(event -> addAirportInfo());
         show.setOnAction(event -> showAirportInfo());
         vbox.getChildren().addAll(add,show);
@@ -311,33 +341,56 @@ public class AmsGUI extends Application {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("Create New Airport");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
+        Label lcode = new Label("Airport/IATA Code:");
         TextField code = new TextField();
-        code.setPromptText("Enter Airport/IATA Code/: ");
+        code.setPromptText("Enter Airport/IATA Code: ");
+        Label lname = new Label("Airport Name:");
         TextField name = new TextField();
         name.setPromptText("Enter Airport Name: ");
+        Label lcity = new Label("City:");
         TextField city = new TextField();
         city.setPromptText("Enter Airport City: ");
+        Label lstate = new Label("State:");
         TextField state = new TextField();
         state.setPromptText("Enter Airport State: ");
+        Label lcountry = new Label("Country:");
         TextField country = new TextField();
         country.setPromptText("Enter Airport Country: ");
+
         Button addAirport = new Button("Add Airport");
-        Button backButton = new Button("Back to Airport scene");
+        Button backButton = new Button("Back to Airport Scene");
+
+        addAirport.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         addAirport.setOnAction(event -> ams.createAirport(new Airport(code.getText(),name.getText(),city.getText(),state.getText(),country.getText())));
         backButton.setOnAction(event -> showAirportScene());
-        vbox.getChildren().addAll(code,name,city,state,country,addAirport,backButton);
+        vbox.getChildren().addAll(lscreen,lcode,code,lname,name,lcity,city,lstate,state,lcountry,country,addAirport,backButton);
         creatShowScreen(vbox);
     }
     private void showAirportInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("All Airport Details");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
         Label l = new Label("AirPortView");
         String s = ams.showAirports();
         l.setText(s);
-        Button backButton = new Button("Back to Airport scene");
+        Button backButton = new Button("Back to Airport Scene");
+
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         backButton.setOnAction(event -> showAirportScene());
-        vbox.getChildren().addAll(l,backButton);
+        vbox.getChildren().addAll(lscreen,l,backButton);
         creatShowScreen(vbox);
     }
     //endregion
@@ -347,8 +400,13 @@ public class AmsGUI extends Application {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
         Button add = new Button("Add Pilot");
         Button show = new Button("Show Pilots");
+
+        add.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        show.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         add.setOnAction(event -> addPilotInfo());
         show.setOnAction(event -> showPilotInfo());
         vbox.getChildren().addAll(add,show);
@@ -358,40 +416,64 @@ public class AmsGUI extends Application {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("All Pilots");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
         Label l = new Label("PilotView");
         String s = ams.showPilots();
         l.setText(s);
-        Button backButton = new Button("Back to Pilot scene");
-        backButton.setOnAction(event -> showPilotScene());
-        vbox.getChildren().addAll(l,backButton);
+        Button backButton = new Button("Back to People Scene");
+
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
+        backButton.setOnAction(event -> showPassengerScene());
+        vbox.getChildren().addAll(lscreen,l,backButton);
         creatShowScreen(vbox);
     }
     private void addPilotInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("Create New Pilot");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
+        Label lidentifier = new Label("Pilot Identifier:");
         TextField identifier = new TextField();
-        identifier.setPromptText("Enter pilotID: ");
+        identifier.setPromptText("Enter Pilot ID: ");
+        Label lFname = new Label("First Name:");
         TextField fName = new TextField();
-        fName.setPromptText("Enter first name: ");
+        fName.setPromptText("Enter First Name: ");
+        Label lLname = new Label("Last Name:");
         TextField lName = new TextField();
-        lName.setPromptText("Enter last name: ");
+        lName.setPromptText("Enter last Name: ");
+        Label lTaxId = new Label("Tax Id:");
         TextField taxID = new TextField();
-        taxID.setPromptText("Enter taxID: ");
+        taxID.setPromptText("Enter Tax Id: ");
+        Label lexperience = new Label("Pilot Experience in Years:");
         TextField experience = new TextField();
-        experience.setPromptText("Enter pilot experience: ");
+        experience.setPromptText("Enter Pilot Experience: ");
+        Label lLocation = new Label("Location Name:");
         TextField location = new TextField();
-        location.setPromptText("Enter location: ");
+        location.setPromptText("Enter Location: ");
+
         Button addPilot = new Button("Add Pilot");
-        Button backButton = new Button("Back to Pilot scene");
+        Button backButton = new Button("Back to People Scene");
+
+        addPilot.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         //Pilot p = new Pilot(identifier.getText(),fName.getText(),lName.getText(),taxID.getText(),Integer.parseInt(experience.getText()),location.getText());
         //addPilot.setOnAction(event -> ams.createPilot(p,location.getText()));
         addPilot.setOnAction(event -> ams.createPilot(new Pilot(identifier.getText(),fName.getText(),lName.getText(),
                                                         taxID.getText(),Integer.parseInt(experience.getText()),
                                                         location.getText()),location.getText()));
 
-        backButton.setOnAction(event -> showPilotScene());
-        vbox.getChildren().addAll(identifier,fName,lName,taxID,experience,location,addPilot,backButton);
+        backButton.setOnAction(event -> showPassengerScene());
+        vbox.getChildren().addAll(lscreen,lidentifier,identifier,lFname,fName,lLname,lName,lTaxId,taxID,lexperience,experience,lLocation,location,addPilot,backButton);
         creatShowScreen(vbox);
 
     }
@@ -404,60 +486,108 @@ public class AmsGUI extends Application {
         vbox.setSpacing(10);
         Button add = new Button("Add Passenger");
         Button show = new Button("Show Passengers");
+        Button add1 = new Button("Add Pilot");
+        Button show1 = new Button("Show Pilots");
+        Button people = new Button("Show All People");
+
+        add.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        show.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        add1.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        show1.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        people.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         add.setOnAction(event -> addPassengerInfo());
         show.setOnAction(event -> showPassengerInfo());
-        vbox.getChildren().addAll(add,show);
+        add1.setOnAction(event -> addPilotInfo());
+        show1.setOnAction(event -> showPilotInfo());
+        people.setOnAction(event -> showPeopleInfo());
+
+        vbox.getChildren().addAll(add,show,add1,show1,people);
         creatShowScreen(vbox);
     }
     private void showPassengerInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("All Passengers");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
         Label l = new Label("PassengerView");
         String s = ams.showPassenger();
         l.setText(s);
-        Button backButton = new Button("Back to Passenger scene");
+        Button backButton = new Button("Back to People Scene");
+
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         backButton.setOnAction(event -> showPassengerScene());
-        vbox.getChildren().addAll(l,backButton);
+        vbox.getChildren().addAll(lscreen,l,backButton);
         creatShowScreen(vbox);
     }
     private void addPassengerInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("Create New Passenger");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
+        Label lidentifier = new Label("Passenger Identifier:");
         TextField id = new TextField();
         id.setPromptText("Enter Identifier/: ");
+        Label lFname = new Label("First Name:");
         TextField fname = new TextField();
         fname.setPromptText("Enter First Name/: ");
+        Label lLname = new Label("Last Name:");
         TextField lname = new TextField();
         lname.setPromptText("Enter Last Name: ");
+        Label lFFmiles = new Label("Frequent Flier Miles:");
         TextField ffmiles = new TextField();
         ffmiles.setPromptText("Enter Frequent Flier Miles: ");
+        Label lPFunds = new Label("Passenger Funds:");
         TextField pfunds = new TextField();
-        pfunds.setPromptText("Enter Passenger funds: ");
+        pfunds.setPromptText("Enter Passenger Funds: ");
+        Label lLocation = new Label("Location:");
         TextField location = new TextField();
         location.setPromptText("Enter Location: ");
+
         Button addPassenger = new Button("Add Passenger");
-        Button backButton = new Button("Back to Passenger scene");
+        Button backButton = new Button("Back to People Scene");
+
+        addPassenger.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         addPassenger.setOnAction(event -> ams.createPassenger(new Passenger(id.getText(), fname.getText(), lname.getText(), Integer.parseInt(ffmiles.getText()), Integer.parseInt(pfunds.getText()), location.getText()), location.getText()));
         backButton.setOnAction(event -> showPassengerScene());
-        vbox.getChildren().addAll(id,fname,lname,ffmiles,pfunds,location,addPassenger,backButton);
+        vbox.getChildren().addAll(lscreen,lidentifier,id,lFname,fname,lLname,lname,lFFmiles,ffmiles,lPFunds,pfunds,lLocation,location,addPassenger,backButton);
         creatShowScreen(vbox);
     }
-    //endregion
-
     private void showPeopleInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("All Pilots and Passengers ");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
         Label l = new Label("People View");
         String s = ams.showPeople();
         l.setText(s);
-        Button backButton = new Button("Back to Passenger scene");
+        Button backButton = new Button("Back to People Scene");
+
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         backButton.setOnAction(event -> showPassengerScene());
-        vbox.getChildren().addAll(l,backButton);
+        vbox.getChildren().addAll(lscreen,l,backButton);
         creatShowScreen(vbox);
     }
+
+    //endregion
+
+
 
 
     //region Flight Section
@@ -467,6 +597,10 @@ public class AmsGUI extends Application {
         vbox.setSpacing(10);
         Button add = new Button("Add Flight");
         Button show = new Button("Show Flights");
+
+        add.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        show.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         add.setOnAction(event -> addFlightInfo());
         show.setOnAction(event -> showFlightInfo());
         vbox.getChildren().addAll(add,show);
@@ -476,23 +610,38 @@ public class AmsGUI extends Application {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("Create New Flight");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
+        Label lAirline = new Label("Airline Name:");
         TextField airlineName = new TextField();
-        airlineName.setPromptText("Enter airline name: ");
+        airlineName.setPromptText("Enter Airline Name: ");
+        Label lFlightNum = new Label("Flight Number:");
         TextField flightNum = new TextField();
-        flightNum.setPromptText("Enter flight number: ");
+        flightNum.setPromptText("Enter flight Number: ");
+        Label lcost = new Label("Flight Cost:");
         TextField cost = new TextField();
-        cost.setPromptText("Enter flight cost: ");
+        cost.setPromptText("Enter Flight Cost: ");
+        Label lprogress = new Label("Route Progress:");
         TextField progress = new TextField();
-        progress.setPromptText("Enter route progress: ");
+        progress.setPromptText("Enter Route Progress: ");
+        Label lroutename = new Label("Route Name:");
         TextField routeName = new TextField();
-        routeName.setPromptText("Enter route name: ");
+        routeName.setPromptText("Enter Route Name: ");
+        Label lNextTime = new Label("Next Status Change:");
         TextField nextTime = new TextField();
-        nextTime.setPromptText("Enter next_status_change: ");
+        nextTime.setPromptText("Enter Next_Status_Change: ");
+        Label ltailNum = new Label("Aircraft Tail Number:");
         TextField tailNum = new TextField();
-        tailNum.setPromptText("Enter aircraft tail number: ");
+        tailNum.setPromptText("Enter Aircraft Tail Number: ");
 
         Button addFlight = new Button("Add Flight");
-        Button backButton = new Button("Back to Flight scene");
+        Button backButton = new Button("Back to Flight Scene");
+
+        addFlight.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
 
 
         addFlight.setOnAction(Event -> createFlight(airlineName.getText(),flightNum.getText(),
@@ -501,7 +650,7 @@ public class AmsGUI extends Application {
                                                     tailNum.getText()));
 
         backButton.setOnAction(event -> showFlightScene());
-        vbox.getChildren().addAll(airlineName,flightNum,cost,progress,routeName,nextTime,tailNum,addFlight,backButton);
+        vbox.getChildren().addAll(lscreen,lAirline,airlineName,lFlightNum,flightNum,lcost,cost,lprogress,progress,lroutename,routeName,lNextTime,nextTime,ltailNum,tailNum,addFlight,backButton);
         creatShowScreen(vbox);
     }
 
@@ -520,12 +669,19 @@ public class AmsGUI extends Application {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+        Label lscreen = new Label("All Flights");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
         Label l = new Label("FlightView");
         String s =  ams.showFlights();
         l.setText(s);
-        Button backButton = new Button("Back to Flight scene");
+        Button backButton = new Button("Back to Flight Scene");
+
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         backButton.setOnAction(event -> showFlightScene());
-        vbox.getChildren().addAll(l,backButton);
+        vbox.getChildren().addAll(lscreen,l,backButton);
         creatShowScreen(vbox);
     }
     //endregion
@@ -535,12 +691,20 @@ public class AmsGUI extends Application {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
-        Label l = new Label("Airplane View");
+
+        Label lscreen = new Label("All Aircrafts");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
+        Label l = new Label("Aircraft View");
         String s = ams.showAirplanes(); //Todo
         l.setText(s);
-        Button backButton = new Button("Back to Jet scene");
+        Button backButton = new Button("Back to Aircraft Scene");
+
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         backButton.setOnAction(event -> showJetScene());
-        vbox.getChildren().addAll(l,backButton);
+        vbox.getChildren().addAll(lscreen,l,backButton);
         creatShowScreen(vbox);
     }
 
@@ -553,28 +717,56 @@ public class AmsGUI extends Application {
         vbox.setSpacing(10);
         Button add = new Button("Add Jet");
         Button show = new Button("Show Jets");
+        Button add1 = new Button("Add Propellors");
+        Button show1 = new Button("Show Propellors");
+        Button aircraft = new Button("Show All Aircrafts");
+
+        add.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        show.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        add1.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        show1.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        aircraft.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         add.setOnAction(event -> addJetInfo());
         show.setOnAction(event -> showJetInfo());
-        vbox.getChildren().addAll(add,show);
+        add1.setOnAction(event -> addPropInfo());
+        show1.setOnAction(event -> showPropInfo());
+        aircraft.setOnAction(event -> showAllAircraftInfo());
+
+        vbox.getChildren().addAll(add,show,add1,show1,aircraft);
         creatShowScreen(vbox);
     }
     private void addJetInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("Create New Jet");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
+        Label ltailNum = new Label("Aircraft Number:");
         TextField tailNum = new TextField();
-        tailNum.setPromptText("Enter tail number: ");
+        tailNum.setPromptText("Enter Aircraft Tail Number: ");
+        Label lseatCap = new Label("Jet Seating Capacity:");
         TextField seatCap = new TextField();
-        seatCap.setPromptText("Enter seating capacity: ");
+        seatCap.setPromptText("Enter Seating Capacity: ");
+        Label lspeed = new Label("Jet Speed:");
         TextField speed = new TextField();
-        speed.setPromptText("Enter speed: ");
+        speed.setPromptText("Enter Speed: ");
+        Label lengineNum = new Label("Number of Engines:");
         TextField engineNum = new TextField();
-        engineNum.setPromptText("Enter number of engines: ");
+        engineNum.setPromptText("Enter Number of Engines: ");
+
         Button addJet = new Button("Add Jet");
-        Button backButton = new Button("Back to Jet scene");
+        Button backButton = new Button("Back to Aircraft Scene");
+
+        addJet.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         addJet.setOnAction(event -> ams.createJet(new Jet( tailNum.getText(),Integer.parseInt(seatCap.getText()),Double.parseDouble(speed.getText()),Integer.parseInt(engineNum.getText()))));
         backButton.setOnAction(event -> showJetScene());
-        vbox.getChildren().addAll(tailNum,seatCap,speed,engineNum,addJet,backButton);
+        vbox.getChildren().addAll(lscreen,ltailNum,tailNum,lseatCap,seatCap,lspeed,speed,lengineNum,engineNum,addJet,backButton);
         creatShowScreen(vbox);
 
 
@@ -584,12 +776,20 @@ public class AmsGUI extends Application {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("All Jets");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
         Label l = new Label("JetView");
         String s = ams.showJetAirplanes(); //Todo
         l.setText(s);
-        Button backButton = new Button("Back to Jet scene");
+        Button backButton = new Button("Back to Aircraft Scene");
+
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         backButton.setOnAction(event -> showJetScene());
-        vbox.getChildren().addAll(l,backButton);
+        vbox.getChildren().addAll(lscreen,l,backButton);
         creatShowScreen(vbox);
     }
     //endregion
@@ -599,6 +799,7 @@ public class AmsGUI extends Application {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
         Button add = new Button("Add Prop");
         Button show = new Button("Show Props");
         add.setOnAction(event -> addPropInfo());
@@ -610,34 +811,56 @@ public class AmsGUI extends Application {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("All Propellors");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
         Label l = new Label("Propellor View");
         String s = ams.showPropAirplanes();
         l.setText(s);
-        Button backButton = new Button("Back to Propellor scene");
-        backButton.setOnAction(event -> showPropScene());
-        vbox.getChildren().addAll(l,backButton);
+        Button backButton = new Button("Back to Aircraft Scene");
+
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
+        backButton.setOnAction(event -> showJetScene());
+        vbox.getChildren().addAll(lscreen,l,backButton);
         creatShowScreen(vbox);
     }
     private void addPropInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("Create New Propellor");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
+        Label ltailNum = new Label("Propellor Tail Number:");
         TextField tailNum = new TextField();
-        tailNum.setPromptText("Enter tail number: ");
+        tailNum.setPromptText("Enter Tail Number: ");
+        Label lseatCap = new Label("Seating Capacity:");
         TextField seatCap = new TextField();
-        seatCap.setPromptText("Enter seating capacity: ");
+        seatCap.setPromptText("Enter Seating Capacity: ");
+        Label lspeed = new Label("Propellor Speed:");
         TextField speed = new TextField();
-        speed.setPromptText("Enter speed: ");
+        speed.setPromptText("Enter Speed: ");
+        Label lengineNum = new Label("Number of Engines:");
         TextField engineNum = new TextField();
-        engineNum.setPromptText("Enter number of engines: ");
+        engineNum.setPromptText("Enter Number of Engines: ");
         Label skids = new Label("Landing Skids: ");
         ComboBox<String> landingSkids = new ComboBox<String>();
         landingSkids.getItems().addAll("True", "False");
-        Button addJet = new Button("Add Prop");
-        Button backButton = new Button("Back to Prop scene");
-        addJet.setOnAction(event -> ams.createProp(new Propeller(tailNum.getText(),Integer.parseInt(seatCap.getText()),Double.parseDouble(speed.getText()),Integer.parseInt(engineNum.getText()),Boolean.parseBoolean(landingSkids.getValue()))));
-        backButton.setOnAction(event -> showPropInfo());
-        vbox.getChildren().addAll(tailNum,seatCap,speed,engineNum,skids, landingSkids,addJet,backButton);
+
+        Button addProp = new Button("Add Prop");
+        Button backButton = new Button("Back to Aircraft Scene");
+
+        addProp.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
+        addProp.setOnAction(event -> ams.createProp(new Propeller(tailNum.getText(),Integer.parseInt(seatCap.getText()),Double.parseDouble(speed.getText()),Integer.parseInt(engineNum.getText()),Boolean.parseBoolean(landingSkids.getValue()))));
+        backButton.setOnAction(event -> showJetScene());
+        vbox.getChildren().addAll(lscreen,ltailNum,tailNum,lseatCap,seatCap,lspeed,speed,lengineNum,engineNum,skids,landingSkids,addProp,backButton);
         creatShowScreen(vbox);
     }
 //endregion
@@ -650,6 +873,10 @@ public class AmsGUI extends Application {
         vbox.setSpacing(10);
         Button add = new Button("Add Leg");
         Button show = new Button("Show Legs");
+
+        add.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        show.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         add.setOnAction(event -> addLegInfo());
         show.setOnAction(event -> showLegInfo());
         vbox.getChildren().addAll(add,show);
@@ -659,31 +886,52 @@ public class AmsGUI extends Application {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("All Legs");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
         Label l = new Label("Leg View");
         String s = ams.showLegs(); //
         l.setText(s);
-        Button backButton = new Button("Back to Leg scene");
+        Button backButton = new Button("Back to Leg Scene");
+
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         backButton.setOnAction(event -> showLegScene());
-        vbox.getChildren().addAll(l,backButton);
+        vbox.getChildren().addAll(lscreen,l,backButton);
         creatShowScreen(vbox);
     }
     private void addLegInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("Create New Leg");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
+        Label ldepartsFrom = new Label("Departure Airport Name:");
         TextField departsFrom = new TextField();
-        departsFrom.setPromptText("Enter departure airport name: ");
+        departsFrom.setPromptText("Enter Departure Airport Name: ");
+        Label ldistance = new Label("Distancee:");
         TextField distance = new TextField();
         distance.setPromptText("Enter distance: ");
+        Label larrivesAt = new Label("Arrival Airport Name:");
         TextField arrivesAt = new TextField();
-        arrivesAt.setPromptText("Enter arrival airport name: ");
+        arrivesAt.setPromptText("Enter Arrival Airport Name: ");
+
         Button addLeg = new Button("Add Leg");
-        Button backButton = new Button("Back to showLegScene scene");
+        Button backButton = new Button("Back to Leg Scene");
+
+        addLeg.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         //Airport oDepartsFrom = ams.getAirportFromAMS(departsFrom.getText());
         //Airport oArrivesAt = ams.getAirportFromAMS(arrivesAt.getText());
         addLeg.setOnAction(event -> ams.createLeg(departsFrom.getText(),distance.getText(), arrivesAt.getText()));
         backButton.setOnAction(event -> showLegScene());
-        vbox.getChildren().addAll(departsFrom,distance,arrivesAt,addLeg,backButton);
+        vbox.getChildren().addAll(lscreen,ldepartsFrom,departsFrom,ldistance,distance,larrivesAt,arrivesAt,addLeg,backButton);
         creatShowScreen(vbox);
     }
 //endregion
@@ -695,6 +943,10 @@ public class AmsGUI extends Application {
         vbox.setSpacing(10);
         Button add = new Button("Add Route");
         Button show = new Button("Show Routes");
+
+        add.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        show.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         add.setOnAction(event -> addRouteInfo());
         show.setOnAction(event -> showRouteInfo());
         vbox.getChildren().addAll(add,show);
@@ -704,32 +956,52 @@ public class AmsGUI extends Application {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("All Routes");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
         Label l = new Label("Routes View");
         String s = ams.showRoutes();
         l.setText(s);
-        Button backButton = new Button("Back to Routes scene");
+        Button backButton = new Button("Back to Routes Scene");
+
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         backButton.setOnAction(event -> showRouteScene());
-        vbox.getChildren().addAll(l,backButton);
+        vbox.getChildren().addAll(lscreen,l,backButton);
         creatShowScreen(vbox);
     }
     private void addRouteInfo() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+
+        Label lscreen = new Label("Create New Route");
+        lscreen.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
+        lscreen.setTextFill(Color.web("Blue"));
+
+        Label lname = new Label("Route Name:");
         TextField name = new TextField();
         name.setPromptText("Enter route name: ");
+        Label ldepartsFrom = new Label("Departure Airport Name:");
         TextField departsFrom = new TextField();
-        departsFrom.setPromptText("Enter departure airport name: ");
+        departsFrom.setPromptText("Enter Departure Airport Name: ");
+        Label lhop = new Label("First Hop Name:");
         TextField hop = new TextField();
-        hop.setPromptText("Enter first hop: ");
+        hop.setPromptText("Enter First Hop: ");
         Button addRoute = new Button("Add Route");
-        Button backButton = new Button("Back to showRouteScene scene");
+        Button backButton = new Button("Back to Routes Scene");
+
+        addRoute.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        backButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
         //Airport a = ams.getAirportFromAMS(departsFrom.getText());
         addRoute.setOnAction(event -> ams.createRoute(new Route(name.getText(),
                                     ams.getAirportFromAMS(departsFrom.getText())),
                                                         departsFrom.getText(), hop.getText()));
         backButton.setOnAction(event -> showRouteScene());
-        vbox.getChildren().addAll(name,departsFrom,hop,addRoute,backButton);
+        vbox.getChildren().addAll(lscreen,lname,name,ldepartsFrom,departsFrom,lhop,hop,addRoute,backButton);
         creatShowScreen(vbox);
     }
 

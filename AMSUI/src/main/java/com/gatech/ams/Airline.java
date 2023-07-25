@@ -118,18 +118,21 @@ public class Airline {
         Flight flight = getFlightFromAirline(flightNumber);
         Airplane plane = flight.getSupportingAirplane();
         if(plane !=null) {
-            plane.setInAir(true);
-        }
-        else return;
-
-        if ((plane.getAssignedPilots() !=null && plane.getAssignedPilots().size() > 1) && (plane instanceof Propeller)) {
-            for (Pilot pilot : plane.getAssignedPilots()) {
-                pilot.getLicenses().contains("jet");
+            if ((plane.getAssignedPilots() !=null && plane.getAssignedPilots().size() > 1) && (plane instanceof Propeller)) {
+                for (Pilot pilot : plane.getAssignedPilots()) {
+                    if (pilot.getLicenses().contains("jet")) {
+                        plane.setInAir(true);
+                    }
+                }
+            } else if ((plane.getAssignedPilots()!=null && plane.getAssignedPilots().size() > 2) && (plane instanceof Jet)) {
+                for (Pilot pilot : plane.getAssignedPilots()) {
+                    if (pilot.getLicenses().contains("jet")) {
+                        plane.setInAir(true);
+                    }
+                }
             }
-        } else if ((plane.getAssignedPilots()!=null && plane.getAssignedPilots().size() > 2) && (plane instanceof Jet)) {
-            for (Pilot pilot : plane.getAssignedPilots()) {
-                pilot.getLicenses().contains("jet");
-            }
+        } else {
+            System.out.println("flight crew is not sufficient!");
         }
     }
 

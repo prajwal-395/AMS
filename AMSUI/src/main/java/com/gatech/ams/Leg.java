@@ -29,9 +29,6 @@ public class Leg {
 	public Airport getArrivalAirport() {
 		return this.arrAirport;
 	}
-    
-    // TODO: helper method to udpate the progess
-
 
 	@Override
 	public String toString() {

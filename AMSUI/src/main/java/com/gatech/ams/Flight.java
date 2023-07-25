@@ -39,6 +39,8 @@ public class Flight {
         this.route = route;
         this.next_time = next_time;
         this.supportingAirplane = supportingAirplane;
+        // add this supporting airplane to the list within airline
+        owningAirline.getAirplanesOfAirline().add(supportingAirplane);
     }
 
     public Airline getOwningAirline() {
@@ -86,10 +88,6 @@ public class Flight {
     }
 
     public void setSupportingAirplane(Airplane supportingAirplane) {
-        this.supportingAirplane = supportingAirplane;
-    }
-
-    public void setOwningAirline(Airplane supportingAirplane) {
         this.supportingAirplane = supportingAirplane;
     }
 

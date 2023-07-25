@@ -36,7 +36,7 @@ public class AmsGUI extends Application {
 
         ams = new AirlineManagementSystem();
 
-        populateSystem(ams);
+        //populateSystem(ams);
 
         this.primaryStage = stage;
         stage.setResizable(true);

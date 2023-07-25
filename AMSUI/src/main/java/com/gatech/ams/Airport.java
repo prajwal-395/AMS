@@ -10,9 +10,6 @@ public class Airport {
     private String country;
 
     private ArrayList<Person> peopleAtAirport= new ArrayList<Person>();
-    
-    //TODO method to get all the legs to other airports --> this would be helpful for the show_airlines method at the end
-    // basically when you create a leg, since it constructs it with a dpearture and arrival airport
 
     public Airport(String IATA_code, String airportName, String cityName, String stateName, String countryName) {
         this.IATA_code = IATA_code;

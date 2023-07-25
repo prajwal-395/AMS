@@ -93,28 +93,13 @@ public class Airplane {
                     //TODO should the vacation spot be +1?
                     //if (passenger.getVacationSpots().get(passenger.getCurrentVacationSpot() + 1).equals(legList.get(flight.getProgessState() + 1).getArrivalAirport())) {
                     if (passenger.getVacationSpots().contains(matchLeg.getArrivalAirport())) {
-
-                        //TODO f the passenger has the funds to cover the flight cost, and the airplane
-                        //supporting that flight has the seating capacity, then your system must track
-                        //the passenger boarding the flight, and later getting off the flight at their
-                        //desired destination. Your system must also track the number of miles earned
-                        //by each passenger so that frequent flyer miles can be accounted for correctly.
                         if (passenger.getPassengerFunds() >= flight.getCost()) {
-                            // TODO write a buyTicket() method to subtract funds from the passanger and add revenue to the airline
-                            // or acutally...
                             passenger.setPassengerFunds(passenger.getPassengerFunds() - flight.getCost());
                             airline.setAirlineRevenue(flight.getCost());
                             if (passengers.size() <= seatingCapacity) {
                                 passengers.add(passenger);
                                 System.out.println("passenger Boaridng:" + passenger.getIdentifier());
                             } else {
-                                /* remove all passangers from that flight
-                                this is kind of a crude method but because we don't have
-                                a preexisting count of what people at an airport have an intent
-                                to travel on a given plane to compare with the carrying capacity of the
-                                flight
-                                passengers.
-                                */
                                 passengers.clear();
                                 return;
                             }

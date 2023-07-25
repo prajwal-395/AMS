@@ -41,7 +41,8 @@ public class Pilot extends Person {
     }
 
 
-    //TODO toggle license
+
+    
     public void toggleLicense(String newLicense) {
         boolean exists = false;
         for (int i = 0; i < listOfLicenses.size(); i++) {

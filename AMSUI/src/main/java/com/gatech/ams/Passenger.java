@@ -56,8 +56,6 @@ public class Passenger extends Person {
         this.currentVacationSpot = currentVacationSpot;
     }
 
-    //TODO extendVacation()
-
 
     @Override
     public String toString() {
